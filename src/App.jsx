@@ -13,7 +13,7 @@ function App() {
             <ScrollControls enabled={true} pages={5} damping={0.3}>
               <Scene />
             </ScrollControls>
-            <OrbitControls />
+            {/* <OrbitControls /> */}
           </Suspense>
         </Canvas>
       </div>
