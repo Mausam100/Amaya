@@ -51,7 +51,7 @@ const Navbar = () => {
           onMouseLeave={() => setIsHover(false)}
           onClick={toggleMenu}
           className={`bg-white z-50 flex items-center rounded-full gap-4 px-1 py-1 transition-all duration-500 ${
-            isOpen ? "w-16 h-16  ml-[13vw]" : "w-auto"
+            isOpen ? "w-16 h-16" : "w-auto"
           }`}
         >
           {/* Hamburger Icon */}

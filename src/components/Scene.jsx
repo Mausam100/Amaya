@@ -22,7 +22,7 @@ const curvePoints = [
   [-1.4, 1.6, -1.2],
   [-1.4, 1.5, -1.1],
   [-1.4, 1.1],
-  [-0.8, 1.1, -1.8],
+  [-0.8, 1.1, -1.6],
 ];
 
 const Scene = () => {
@@ -48,21 +48,21 @@ const Scene = () => {
 
     // Define different target positions based on offset
     let newTarget = new THREE.Vector3(1.902, 1.722, -0.71); // Default target //winodow
-    if (offset > 0.46367851622874806) {//Menu
+    if (offset > 0.46367851622874806) {               //Menu
       newTarget.set(-1.377, 0, -1.82);
     }
-    if (offset > 0.6413286614594021) {// doll
+    if (offset > 0.7013286614594021) {                // doll
       newTarget.set(-2.531, 1.034, -2.24);
     }
-    if (offset > 0.7212519319938177) {// t-peot
+    if (offset > 0.7712519319938177) {               // t-peot
       newTarget.set(-1.719, 0.735, 0.212);
     }
-    if (offset > 0.8758114374034003) {
+    if (offset > 0.8558114374034003) {
       newTarget.set(-0.8, 1.1, -1.8);
     }
     
     if (offset > 1) { // 
-      newTarget.set(1.8, 2.1, 11.8);
+      newTarget.set(1.8, 2.1);
     }
     
     // Smoothly interpolate lookAt target
@@ -74,7 +74,7 @@ const Scene = () => {
     <>
       <Environment preset="park" />
       <Model />
-      <Line points={points} color="red" lineWidth={3} />
+      {/* <Line points={points} color="red" lineWidth={3} /> */}
     </>
   );
 };
