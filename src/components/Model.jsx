@@ -115,7 +115,8 @@ export default function Model(props) {
                         fontSize={0.2}
                         maxWidth={1} // Set a maximum width for the text
                         lineHeight={1.2} // Adjust line height as needed
-                      >
+                        >
+                       
                         Amaya
                       </Text>
                     </group>
