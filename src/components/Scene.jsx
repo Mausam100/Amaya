@@ -5,20 +5,20 @@ import * as THREE from "three";
 import Model from "./Model";
 import { useFrame, useThree } from "@react-three/fiber";
 import { degToRad } from "three/src/math/MathUtils.js";
+import SmokeShader from "./SmokeShader";
 
 // Define curve points to explore the model
 const curvePoints = [
   // x    y     z
   [-4.0, 1.5, -0.7],
-  [-3.9, 1.5, -0.7],
-  [-3.8, 1.5, -0.7],
-  [-3.7, 1.5, -0.7],
-  [0, 1.5, -0.7],
-  [1.6, 1.8, -0.7],
-  [1.6, 1.8, -0.1],
-  [-1, 1.2, -1],
-  [-1.1, 1.2, -1],
-  [-1.3, 1.2, -1],
+  [3.9, 1.5, -0.7],
+  
+  // [0, 1.5, -0.7],
+  // [1.6, 1.8, -0.7],
+  // [1.6, 1.8, -0.1],
+  // [-1, 1.2, -1],
+  // [-1.1, 1.2, -1],
+  // [-1.3, 1.2, -1],
   // [10, 2, 0],
   // [0, 2, 0],
   // [-2, 1.8, 0],
@@ -114,10 +114,11 @@ const Scene = () => {
 
   return (
     <>
-      <Environment preset="city" />
-      <Model />
-      <Line points={points} color="red" lineWidth={3} />
-    </>
+    <Environment preset="park" />
+    <Model />
+    <Line points={points} color="red" lineWidth={3} />
+    <SmokeShader />
+  </>
   );
 };
 
