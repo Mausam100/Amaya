@@ -78,7 +78,7 @@ const Navbar = () => {
                 }`}
               >
                 <h3
-                  className={`font-semibold text-base transition-opacity duration-500 ${
+                  className={`font-semibold text-base cursor-pointer transition-opacity duration-500 ${
                     isHover ? "opacity-100 delay-200" : "opacity-0"
                   }`}
                 >
@@ -86,7 +86,7 @@ const Navbar = () => {
                 </h3>
               </div>
 
-              <div className="bg-[#3ADD8A] rounded-full z-50 cursor-pointer overflow-hidden">
+              <div className="bg-white rounded-full z-50 cursor-pointer overflow-hidden">
                 <motion.img
                   animate={{ rotate: [0, 0, -40, 0] }}
                   transition={{
@@ -96,9 +96,9 @@ const Navbar = () => {
                     ease: "linear",
                   }}
                   style={{ originX: 1 }}
-                  src="https://www.bikebear.com.my/wp-content/uploads/2022/10/Mask-Group-34014.png"
-                  alt="hand"
-                  className="w-16 translate-y-0 z-50"
+                  src="https://image.similarpng.com/file/similarpng/very-thumbnail/2021/06/Coffee-cup-icon-design-template-on-transparent-background-pNG.png"
+                  alt="cup"
+                  className="w-14 mx-auto h-12 translate-y-0 z-50"
                 />
               </div>
             </div>
