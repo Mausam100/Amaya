@@ -34,7 +34,7 @@ const Navbar = () => {
               opacity: 0,
             }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className={` flex flex-col items-center bg-green justify-between top-6 right-20 z-10 absolute `}
+            className={` flex flex-col items-center bg-green justify-between top-6 right-36 z-10 absolute `}
           >
             <NavComp img={"/cart.svg"} />
             <NavComp img={"/cart.svg"} />
