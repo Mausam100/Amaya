@@ -26,7 +26,7 @@ const Navbar = () => {
             }}
             animate={{
               opacity: 1,
-              width: "95vw",
+              width: "10vw",
               height: "90vh",
               borderRadius: "1rem",
             }}
@@ -34,7 +34,7 @@ const Navbar = () => {
               opacity: 0,
             }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className={` flex items-center bg-green justify-between top-6 right-5 z-10 absolute bg-white`}
+            className={` flex flex-col items-center bg-green justify-between top-6 right-20 z-10 absolute `}
           >
             <NavComp img={"/cart.svg"} />
             <NavComp img={"/cart.svg"} />
@@ -51,7 +51,7 @@ const Navbar = () => {
           onMouseLeave={() => setIsHover(false)}
           onClick={toggleMenu}
           className={`bg-white z-50 flex items-center rounded-full gap-4 px-1 py-1 transition-all duration-500 ${
-            isOpen ? "w-16 h-16 mt-2 ml-[7vw]" : "w-auto"
+            isOpen ? "w-16 h-16  ml-[13vw]" : "w-auto"
           }`}
         >
           {/* Hamburger Icon */}

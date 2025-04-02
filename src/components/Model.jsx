@@ -111,7 +111,6 @@ export default function Model(props) {
                       </Text>
                       <Text
                         color=""
-                        position={[1.87, 1.1, 1.1]}
                         fontSize={0.2}
                         maxWidth={1} // Set a maximum width for the text
                         lineHeight={1.2} // Adjust line height as needed
