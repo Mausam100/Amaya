@@ -12,7 +12,7 @@ const curvePoints = [
   // x    y     z
   [-4.0, 1.5, -0.7],
   [3.9, 1.5, -0.7],
-  
+
   // [0, 1.5, -0.7],
   // [1.6, 1.8, -0.7],
   // [1.6, 1.8, -0.1],
@@ -40,14 +40,13 @@ const Scene = () => {
 
   useFrame(() => {
     const offset = Math.min(1, Math.max(0, scroll.offset));
-    console.log(offset);
-    
+
     const point = curve.getPointAt(offset);
     if (point) {
       camera.position.lerp(point, 0.1);
       camera.lookAt(0, 0, 0); // Ensure the camera is always looking at the model's center
     }
- 
+
     // Adjust camera rotation based on scroll offset
     if (offset > 0.32) {
       camera.rotation.y = THREE.MathUtils.lerp(
@@ -75,50 +74,50 @@ const Scene = () => {
     //     0.5
     //   );
     // }
-  //   if (offset > 0.41) {
-  //     camera.rotation.y = THREE.MathUtils.lerp(
-  //       camera.rotation.y,
-  //       degToRad(-70),
-  //       0.05
-  //     );
-  //   }
-  //   if (offset > 0.512) {
-  //     camera.rotation.y = THREE.MathUtils.lerp(
-  //       camera.rotation.y,
-  //       degToRad(-200),
-  //       0.05
-  //     );
-  //   }
-  //   if (offset > 0.683) {
-  //     camera.rotation.y = THREE.MathUtils.lerp(
-  //       camera.rotation.y,
-  //       degToRad(90),
-  //       0.05
-  //     );
-  //   }
-  //   if (offset > 0.86) {
-  //     camera.rotation.y = THREE.MathUtils.lerp(
-  //       camera.rotation.y,
-  //       degToRad(-360),
-  //       0.05
-  //     );
-  //   }
-  //   if (offset > 0.98) {
-  //     camera.rotation.y = THREE.MathUtils.lerp(
-  //       camera.rotation.y,
-  //       degToRad(-200),
-  //       0.05
-  //     );
-  //   }
+    //   if (offset > 0.41) {
+    //     camera.rotation.y = THREE.MathUtils.lerp(
+    //       camera.rotation.y,
+    //       degToRad(-70),
+    //       0.05
+    //     );
+    //   }
+    //   if (offset > 0.512) {
+    //     camera.rotation.y = THREE.MathUtils.lerp(
+    //       camera.rotation.y,
+    //       degToRad(-200),
+    //       0.05
+    //     );
+    //   }
+    //   if (offset > 0.683) {
+    //     camera.rotation.y = THREE.MathUtils.lerp(
+    //       camera.rotation.y,
+    //       degToRad(90),
+    //       0.05
+    //     );
+    //   }
+    //   if (offset > 0.86) {
+    //     camera.rotation.y = THREE.MathUtils.lerp(
+    //       camera.rotation.y,
+    //       degToRad(-360),
+    //       0.05
+    //     );
+    //   }
+    //   if (offset > 0.98) {
+    //     camera.rotation.y = THREE.MathUtils.lerp(
+    //       camera.rotation.y,
+    //       degToRad(-200),
+    //       0.05
+    //     );
+    //   }
   });
 
   return (
     <>
-    <Environment preset="park" />
-    <Model />
-    <Line points={points} color="red" lineWidth={3} />
-    <SmokeShader />
-  </>
+      <Environment preset="park" />
+      <Model />
+      <Line points={points} color="red" lineWidth={3} />
+      {/* <SmokeShader /> */}
+    </>
   );
 };
 
