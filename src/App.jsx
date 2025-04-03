@@ -1,9 +1,7 @@
-// filepath: c:\Users\kushw\OneDrive\Desktop\Amaya\src\App.jsx
 import { Canvas } from "@react-three/fiber";
 import { ScrollControls, OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
 import Scene from "./components/Scene";
-import NavComp from "./components/NavComp";
 import Navbar from "./components/Navbar";
 
 function App() {
