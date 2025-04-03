@@ -26,21 +26,24 @@ const Navbar = () => {
             }}
             animate={{
               opacity: 1,
-              width: "10vw",
-              height: "90vh",
+              width: "100vw",
+              height: "100vh",
               borderRadius: "1rem",
             }}
             exit={{
               opacity: 0,
             }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className={` flex flex-col items-center bg-green justify-between top-6 right-36 z-10 absolute `}
+            className={`overflow-hidden flex flex-col gap-4 top-0 right-0 bg-transperent backdrop-blur-md z-10 absolute`}
+            style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
           >
-            <NavComp img={"/cart.svg"} />
-            <NavComp img={"/cart.svg"} />
-            <NavComp img={"/cart.svg"} />
-            <NavComp img={"/cart.svg"} />
-            <NavComp img={"/cart.svg"} />
+            <div className="flex flex-col items-end mr-30 pt-4 gap-6">
+              <NavComp img={"/cart.svg"} />
+              <NavComp img={"/cart.svg"} />
+              <NavComp img={"/cart.svg"} />
+              <NavComp img={"/cart.svg"} />
+              <NavComp img={"/cart.svg"} />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -53,6 +56,7 @@ const Navbar = () => {
           className={`bg-white z-50 flex items-center rounded-full gap-4 px-1 py-1 transition-all duration-500 ${
             isOpen ? "w-16 h-16" : "w-auto"
           }`}
+          style={{ pointerEvents: 'auto' }}
         >
           {/* Hamburger Icon */}
           <div className="flex z-50 w-10 items-center justify-end cursor-pointer">

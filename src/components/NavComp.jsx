@@ -2,7 +2,7 @@ import React from "react";
 
 const NavComp = ({ text, img }) => {
   return (
-    <div className="relative w-full flex justify-center items-center">
+    <div className=" flex justify-center items-center">
       <img
         src="/flower.svg"
         className="object-contain w-30"
