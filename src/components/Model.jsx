@@ -95,31 +95,7 @@ export default function Model(props) {
                         />
                       </group>
                     </group>
-                    <group
-                      position={[-1.3, 0.72, -2.5]}
-                      rotation={[0, -Math.PI / 2, 0]}
-                    >
-                      <Text
-                        color=""
-                        position={[0.927, 1.012, -1.5]}
-                        fontSize={0.1}
-                        maxWidth={1} // Set a maximum width for the text
-                        lineHeight={1.2} // Adjust line height as needed
-                      >
-                        Welcome to Amaya Café – A digital café experience like
-                        never before!
-                      </Text>
-                      <Text
-                        color=""
-                        position={[1.87, 1.6, 1.1]}
-                        fontSize={0.2}
-                        maxWidth={1} // Set a maximum width for the text
-                        lineHeight={1.2} // Adjust line height as needed
-                        >
-                       
-                        Amaya
-                      </Text>
-                    </group>
+                   
                     <group
                       name="Cup001_5_13"
                       position={[0.945, 0.735, -0.969]}
