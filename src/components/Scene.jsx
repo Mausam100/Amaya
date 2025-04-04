@@ -1,14 +1,21 @@
-
 import React, { useMemo, useState, useEffect } from "react";
-import { Environment, useScroll, Text, Float, Image, Line } from "@react-three/drei";
+import {
+  Environment,
+  useScroll,
+  Text,
+  Float,
+  Image,
+  Line,
+  Html,
+} from "@react-three/drei";
 import * as THREE from "three";
 import Model from "./Model";
 import { useFrame, useThree } from "@react-three/fiber";
 import About from "./About";
-
+import Over from "./Over"; // Import the Over component
 
 const curvePoints = [
-    [-4, 1.8, -1],
+  [-4, 1.8, -1],
   [2.5, 1.8, -1],
   [1.6, 1.8, -0.9],
   [1.6, 1.8, -0.85],
@@ -33,13 +40,20 @@ const Scene = () => {
   const scroll = useScroll();
   const [offset, setOffset] = useState(0);
   const [mouseOffset, setMouseOffset] = useState(new THREE.Vector2(0, 0));
+  const [isOverOpen, setIsOverOpen] = useState(false); // State to control Over component visibility
 
   const curve = useMemo(
-    () => new THREE.CatmullRomCurve3(curvePoints.map((p) => new THREE.Vector3(...p))),
+    () =>
+      new THREE.CatmullRomCurve3(
+        curvePoints.map((p) => new THREE.Vector3(...p))
+      ),
     []
   );
 
-  const targetLookAt = useMemo(() => new THREE.Vector3(1.902, 1.722, -0.71), []);
+  const targetLookAt = useMemo(
+    () => new THREE.Vector3(1.902, 1.722, -0.71),
+    []
+  );
 
   // ✅ Handle Mouse Move for subtle camera motion
   useEffect(() => {
@@ -63,9 +77,9 @@ const Scene = () => {
     // 🛠 Define LookAt Targets Based on Scroll
     let newTarget = new THREE.Vector3(5.902, 1.722, -0.71);
     if (offset > 0.515) newTarget.set(-1.377, 0, -1.82);
-    if (offset > 0.720) newTarget.set(-2.531, 1.034, -2.24);
+    if (offset > 0.72) newTarget.set(-2.531, 1.034, -2.24);
     if (offset > 0.825) newTarget.set(-1.719, 0.735, 0.212);
-    if (offset > 0.910) newTarget.set(-0.8, 1.1, -1.8);
+    if (offset > 0.91) newTarget.set(-0.8, 1.1, -1.8);
     if (offset > 1) newTarget.set(1.8, 2.1);
 
     targetLookAt.lerp(newTarget, 0.05);
@@ -73,31 +87,47 @@ const Scene = () => {
 
     // ✅ Apply Mouse Movement for subtle motion
     const maxMove = 0.1;
-    const mouseEffect = new THREE.Vector3(mouseOffset.x * maxMove, mouseOffset.y * maxMove, 0);
+    const mouseEffect = new THREE.Vector3(
+      mouseOffset.x * maxMove,
+      mouseOffset.y * maxMove,
+      0
+    );
 
-    const finalPosition = basePosition
+    const finalPosition = basePosition;
     camera.position.lerp(finalPosition, 0.05);
   });
-   console.log(offset);
-   
+  //  console.log(offset);
   return (
     <>
       <group position={[-1.3, 0.72, -2.5]} rotation={[0, -Math.PI / 2, 0]}>
         {/* Welcome text fades in between 30% and 50% of scroll */}
         <Text
-          fillOpacity={offset > 0.12 && offset < 0.35 ? Math.min(Math.max((offset - 0.12) * 15, 0), 1) : 0}
+          fillOpacity={
+            offset > 0.12 && offset < 0.35
+              ? Math.min(Math.max((offset - 0.12) * 15, 0), 1)
+              : 0
+          }
           color="white"
           position={[0.927, 1.012, -1.5]}
           fontSize={0.1}
           maxWidth={1}
           lineHeight={1.2}
+          onClick={() => {
+            console.log("Text clicked!"); // Debugging line
+            setIsOverOpen(true);
+            console.log("isOverOpen set to true"); // Confirm state change
+          }}
         >
           Welcome to Amaya Café – A digital café experience like never before!
         </Text>
 
         {/* "Amaya" text fades in at 70% scroll and out at 90% */}
         <Text
-          fillOpacity={offset > 0.0 && offset < 0.3 ? Math.min(Math.max((offset - 0.0) * 115, 0), 1) : 0}
+          fillOpacity={
+            offset > 0.0 && offset < 0.3
+              ? Math.min(Math.max((offset - 0.0) * 115, 0), 1)
+              : 0
+          }
           color="white"
           position={[1.87, 1.6, 1.1]}
           fontSize={0.2}
@@ -106,10 +136,15 @@ const Scene = () => {
         >
           Amaya
         </Text>
-  
-      <About offset={offset} />
-       
 
+        <About offset={offset} />
+        {isOverOpen && (
+          <Html fullscreen >
+            <div className="w-full h-screen bg-black text-white flex items-center justify-center z-5000000">
+              Over
+            </div>
+          </Html>
+        )}
       </group>
 
       <Environment
@@ -119,11 +154,10 @@ const Scene = () => {
         backgroundIntensity={0.5}
         environmentIntensity={0.8}
         backgroundRotation={[0, Math.PI / 2, 0]}
-        />
+      />
       <Model />
       <ambientLight intensity={1} />
       {/* <Line points={curvePoints} color="red" lineWidth={3} /> */}
-
     </>
   );
 };
