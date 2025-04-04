@@ -120,6 +120,7 @@ const Scene = ({ setOverlayerVisible }) => {
         environmentIntensity={0.8}
         backgroundRotation={[0, Math.PI / 2, 0]}
       />
+      />
       <Model />
       <ambientLight intensity={1} />
     </>
