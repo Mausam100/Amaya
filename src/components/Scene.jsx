@@ -1,11 +1,9 @@
-
 import React, { useMemo, useState, useEffect } from "react";
 import { Environment, useScroll, Text, Float, Image, Line } from "@react-three/drei";
 import * as THREE from "three";
 import Model from "./Model";
 import { useFrame, useThree } from "@react-three/fiber";
 import About from "./About";
-
 
 const curvePoints = [
     [-4, 1.8, -1],
@@ -28,7 +26,7 @@ const curvePoints = [
   [-0.8, 1.1, -1.6],
 ];
 
-const Scene = () => {
+const Scene = ({ setOverlayerVisible }) => {
   const { camera } = useThree();
   const scroll = useScroll();
   const [offset, setOffset] = useState(0);
@@ -41,7 +39,6 @@ const Scene = () => {
 
   const targetLookAt = useMemo(() => new THREE.Vector3(1.902, 1.722, -0.71), []);
 
-  // ✅ Handle Mouse Move for subtle camera motion
   useEffect(() => {
     const handleMouseMove = (event) => {
       const { innerWidth, innerHeight } = window;
@@ -60,7 +57,6 @@ const Scene = () => {
     const basePosition = curve.getPointAt(offset);
     if (!basePosition) return;
 
-    // 🛠 Define LookAt Targets Based on Scroll
     let newTarget = new THREE.Vector3(5.902, 1.722, -0.71);
     if (offset > 0.515) newTarget.set(-1.377, 0, -1.82);
     if (offset > 0.720) newTarget.set(-2.531, 1.034, -2.24);
@@ -71,20 +67,27 @@ const Scene = () => {
     targetLookAt.lerp(newTarget, 0.05);
     camera.lookAt(targetLookAt);
 
-    // ✅ Apply Mouse Movement for subtle motion
     const maxMove = 0.1;
     const mouseEffect = new THREE.Vector3(mouseOffset.x * maxMove, mouseOffset.y * maxMove, 0);
 
     const finalPosition = basePosition
     camera.position.lerp(finalPosition, 0.05);
   });
-   console.log(offset);
    
   return (
     <>
-      <group position={[-1.3, 0.72, -2.5]} rotation={[0, -Math.PI / 2, 0]}>
-        {/* Welcome text fades in between 30% and 50% of scroll */}
+      <group 
+      position={[-1.3, 0.72, -2.5]} rotation={[0, -Math.PI / 2, 0]}>
         <Text
+        onClick={() => {
+          setOverlayerVisible(prev => !prev);
+        }}
+        onPointerOver={(e) => {
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerOut={(e) => {
+          document.body.style.cursor = "default";
+        }}
           fillOpacity={offset > 0.12 && offset < 0.35 ? Math.min(Math.max((offset - 0.12) * 15, 0), 1) : 0}
           color="white"
           position={[0.927, 1.012, -1.5]}
@@ -95,7 +98,6 @@ const Scene = () => {
           Welcome to Amaya Café – A digital café experience like never before!
         </Text>
 
-        {/* "Amaya" text fades in at 70% scroll and out at 90% */}
         <Text
           fillOpacity={offset > 0.0 && offset < 0.3 ? Math.min(Math.max((offset - 0.0) * 115, 0), 1) : 0}
           color="white"
@@ -107,9 +109,7 @@ const Scene = () => {
           Amaya
         </Text>
   
-      <About offset={offset} />
-       
-
+        <About offset={offset} />
       </group>
 
       <Environment
@@ -119,11 +119,9 @@ const Scene = () => {
         backgroundIntensity={0.5}
         environmentIntensity={0.8}
         backgroundRotation={[0, Math.PI / 2, 0]}
-        />
+      />
       <Model />
       <ambientLight intensity={1} />
-      {/* <Line points={curvePoints} color="red" lineWidth={3} /> */}
-
     </>
   );
 };
