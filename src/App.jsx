@@ -9,45 +9,45 @@ import Menu from "./components/Menu";
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState({});
-  console.log(selectedMenuItem);
-  
+  // console.log(selectedMenuItem);
+
   // const menu = ["Americano", "Cappuccino", "Latte", "Mocha", "Matcha Latte"];
   const menu = [
     {
-    name: "Americano",
-    price: "$12",
-    description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/public/images/Group20.svg"
-  },
-  {
-    name: "Americano",
-    price: "$12",
-    description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/public/images/Group20.svg"
-  },
-  {
-    name: "Americano",
-    price: "$12",
-    description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/public/images/Group20.svg"
-  },
-  {
-    name: "Americano",
-    price: "$12",
-    description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/public/images/Group20.svg"
-  }
-]
+      name: "Americano",
+      price: "$12",
+      description: "A rich and bold coffee brewed from high-quality beans.",
+      img: "/images/Group20.svg",
+    },
+    {
+      name: "Americano",
+      price: "$12",
+      description: "A rich and bold coffee brewed from high-quality beans.",
+      img: "/images/Group20.svg",
+    },
+    {
+      name: "Americano",
+      price: "$12",
+      description: "A rich and bold coffee brewed from high-quality beans.",
+      img: "/images/Group20.svg",
+    },
+    {
+      name: "Americano",
+      price: "$12",
+      description: "A rich and bold coffee brewed from high-quality beans.",
+      img: "/images/Group20.svg",
+    },
+  ];
   return (
     <>
       <div className="w-full h-screen bg-black">
         <Canvas>
           <Suspense fallback={null}>
-            <ScrollControls enabled={true} pages={10} damping={0.3}>
-              <Scene setOverlayerVisible={setOverlayerVisible}  />
-              <Menu 
-                setOverlayerVisible={setOverlayerVisible} 
-                menu={menu} 
+            <ScrollControls enabled={true} pages={10}>
+              <Scene setOverlayerVisible={setOverlayerVisible} />
+              <Menu
+                setOverlayerVisible={setOverlayerVisible}
+                menu={menu}
                 setSelectedMenuItem={setSelectedMenuItem}
               />
             </ScrollControls>
@@ -59,7 +59,13 @@ function App() {
             <Navbar />
           </div>
         </div>
-        {isOverlayerVisible && <Overlayer setOverlayerVisible={setOverlayerVisible} setSelectedMenuItem={setSelectedMenuItem}  menuItem={selectedMenuItem} />}
+        {isOverlayerVisible && (
+          <Overlayer
+            setOverlayerVisible={setOverlayerVisible}
+            setSelectedMenuItem={setSelectedMenuItem}
+            menuItem={selectedMenuItem}
+          />
+        )}
       </div>
     </>
   );
