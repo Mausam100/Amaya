@@ -5,7 +5,7 @@ const NavComp = ({ text, img }) => {
     <div className=" flex justify-center items-center">
       <img
         src="/flower.svg"
-        className="object-contain w-30"
+        className="object-contain w-20 md:w-30"
       />
       {img ? <img className="absolute w-14" src={img} /> : null}
       {text ? (

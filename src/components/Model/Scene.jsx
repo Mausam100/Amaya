@@ -8,8 +8,7 @@ import {
 import * as THREE from "three";
 import Model from "./Model";
 import { useFrame, useThree } from "@react-three/fiber";
-import About from "./About";
-
+import About from "../Home/About";
 const curvePoints = [
   [-4, 1.8, -1],
   [2.5, 1.8, -1],
@@ -124,6 +123,7 @@ const Scene = ({ setOverlayerVisible }) => {
                 fontSize={0.1}
                 maxWidth={1}
                 lineHeight={1.2}
+                 font="/public/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
               >
                 Welcome to Amaya Café – A digital café experience like never before!
               </Text>
@@ -139,6 +139,7 @@ const Scene = ({ setOverlayerVisible }) => {
                 fontSize={0.2}
                 maxWidth={1}
                 lineHeight={1.2}
+                font="/public/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
               >
                 Amaya
               </Text>
@@ -180,6 +181,7 @@ const Scene = ({ setOverlayerVisible }) => {
           fontSize={0.2}
           maxWidth={1}
           lineHeight={1.2}
+          fontStyle="/"
         >
           Amaya
         </Text>

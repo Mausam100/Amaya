@@ -1,49 +1,46 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls } from "@react-three/drei";
 import { Suspense, useState } from "react";
-import Scene from "./components/Scene";
-import Navbar from "./components/Navbar";
-import Overlayer from "./components/Overlayer";
-import Menu from "./components/Menu";
+import Scene from "./components/Model/Scene";
+import Navbar from "./components/navbar/Navbar";
+import Overlayer from "./components/Home/Overlayer";
+import Menu from "./components/Home/Menu";
 
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState({});
-  console.log(selectedMenuItem);
-  
-  // const menu = ["Americano", "Cappuccino", "Latte", "Mocha", "Matcha Latte"];
   const menu = [
     {
-    name: "Americano",
+    name: "Espreeso macchiato",
     price: "$12",
     description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/public/images/Group20.svg"
+    img: "/images/Group20.svg"
   },
   {
     name: "Americano",
-    price: "$12",
+    price: "$15",
     description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/public/images/Group20.svg"
+    img: "/images/Group20.svg"
   },
   {
-    name: "Americano",
-    price: "$12",
+    name: "Espresso con Panna",
+    price: "$24",
     description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/public/images/Group20.svg"
+    img: "/images/Group20.svg"
   },
   {
-    name: "Americano",
-    price: "$12",
+    name: "cappuccino",
+    price: "$32vwww",
     description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/public/images/Group20.svg"
+    img: "/images/Group20.svg"
   }
 ]
   return (
     <>
-      <div className="w-full h-screen bg-black">
+      <div className="w-full h-screen bg-black select-none">
         <Canvas>
           <Suspense fallback={null}>
-            <ScrollControls enabled={true} pages={10} damping={0.3}>
+            <ScrollControls enabled={true} pages={10} damping={0.4}>
               <Scene setOverlayerVisible={setOverlayerVisible}  />
               <Menu 
                 setOverlayerVisible={setOverlayerVisible} 
