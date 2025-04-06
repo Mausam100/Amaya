@@ -109,7 +109,6 @@ const Scene = ({ setOverlayerVisible }) => {
         {isMobile === false ? (
           <>
             <Text
-              onClick={() => setOverlayerVisible((prev) => !prev)}
               onPointerOver={() => (document.body.style.cursor = "pointer")}
               onPointerOut={() => (document.body.style.cursor = "default")}
               fillOpacity={offset > 0.12 && offset < 0.35 ? Math.min(Math.max((offset - 0.12) * 15, 0), 1) : 0}
