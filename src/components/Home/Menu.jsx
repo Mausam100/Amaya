@@ -49,7 +49,7 @@ function MenuContent({ setOverlayerVisible, menu, setSelectedMenuItem }) {
       </group>
 
       {/* Title Section */}
-      <group position={[-0.94, 0.6, -2.2]}>
+      <group position={[-0.94, 0.58, -2.2]}>
         <Root>
           <Text fontSize={8} color="#fff" fontFamily="bakeryroast" fontWeight={400}>
             Explore Our 3d Menu
