@@ -9,6 +9,7 @@ import Menu from "./components/Home/Menu";
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState({});
+
   const menu = [
     {
     name: "Espreeso macchiato",
@@ -35,16 +36,47 @@ function App() {
     img: "/images/Group20.svg"
   }
 ]
+
+  // console.log(selectedMenuItem);
+
+  // const menu = ["Americano", "Cappuccino", "Latte", "Mocha", "Matcha Latte"];
+  const menu = [
+    {
+      name: "Americano",
+      price: "$12",
+      description: "A rich and bold coffee brewed from high-quality beans.",
+      img: "/images/Group20.svg",
+    },
+    {
+      name: "Americano",
+      price: "$12",
+      description: "A rich and bold coffee brewed from high-quality beans.",
+      img: "/images/Group20.svg",
+    },
+    {
+      name: "Americano",
+      price: "$12",
+      description: "A rich and bold coffee brewed from high-quality beans.",
+      img: "/images/Group20.svg",
+    },
+    {
+      name: "Americano",
+      price: "$12",
+      description: "A rich and bold coffee brewed from high-quality beans.",
+      img: "/images/Group20.svg",
+    },
+  ];
   return (
     <>
       <div className="w-full h-screen bg-black select-none">
         <Canvas>
           <Suspense fallback={null}>
-            <ScrollControls enabled={true} pages={10} damping={0.4}>
-              <Scene setOverlayerVisible={setOverlayerVisible}  />
-              <Menu 
-                setOverlayerVisible={setOverlayerVisible} 
-                menu={menu} 
+            <ScrollControls enabled={true} pages={10}>
+              <Scene setOverlayerVisible={setOverlayerVisible} />
+              <Menu
+                setOverlayerVisible={setOverlayerVisible}
+                menu={menu}
+
                 setSelectedMenuItem={setSelectedMenuItem}
               />
             </ScrollControls>
@@ -56,7 +88,13 @@ function App() {
             <Navbar />
           </div>
         </div>
-        {isOverlayerVisible && <Overlayer setOverlayerVisible={setOverlayerVisible} setSelectedMenuItem={setSelectedMenuItem}  menuItem={selectedMenuItem} />}
+        {isOverlayerVisible && (
+          <Overlayer
+            setOverlayerVisible={setOverlayerVisible}
+            setSelectedMenuItem={setSelectedMenuItem}
+            menuItem={selectedMenuItem}
+          />
+        )}
       </div>
     </>
   );
