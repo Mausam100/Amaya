@@ -6,7 +6,7 @@ const NavComp = ({ text, img, onClick }) => {
       className="flex justify-center items-center relative"
       onClick={onClick}
     >
-      <img src="/flower.svg" className="object-contain w-20 md:w-40" />
+      <img src="/flower.svg" className="object-contain w-20 md:w-30" />
       {img ? (
         <img
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  w-14"
