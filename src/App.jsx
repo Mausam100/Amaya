@@ -62,11 +62,12 @@ function App() {
       </div>
       {/* Description Overlay */}
       {isOverlayerVisible && (
-        <Overlayer
-          setOverlayerVisible={setOverlayerVisible}
-          setSelectedMenuItem={setSelectedMenuItem}
-          menuItem={selectedMenuItem}
-        />
+       <Overlayer
+       setOverlayerVisible={setOverlayerVisible}
+       setSelectedMenuItem={setSelectedMenuItem}
+       menuItem={selectedMenuItem}
+       menu={menu}
+     />
       )}
     </div>
   );
