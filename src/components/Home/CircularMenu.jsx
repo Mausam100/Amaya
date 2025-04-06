@@ -1,0 +1,158 @@
+import React, { useState } from "react";
+
+const CircularMenu = ({ menu, onClick }) => {
+  const [quantities, setQuantities] = useState({});
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleQuantityChange = (itemId, change) => {
+    setQuantities((prev) => {
+      const newQuantity = (prev[itemId] || 0) + change;
+      return newQuantity >= 0 ? { ...prev, [itemId]: newQuantity } : prev;
+    });
+  };
+
+  const calculateTotal = () => {
+    return menu.reduce((total, item, index) => {
+      const quantity = quantities[index] || 0;
+      const price = parseFloat(item.price.replace("$", ""));
+      return total + price * quantity;
+    }, 0);
+  };
+
+  return (
+    <>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]">
+        <div className="relative w-[500px] h-[750px] md:w-[800px] md:h-[800px] rounded-full bg-black/30 bg-[url('/images/food-pattern-bg.png')] bg-cover scale-[0.8]">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-center">
+            <button
+              className="absolute -top-[50px] left-1/2 -translate-x-1/2 text-white text-base font-bold w-[120px] p-[5px] bg-amber-700 rounded-lg hover:bg-amber-600 transition-colors"
+              onClick={() =>
+                quantities &&
+                Object.values(quantities).some((quantity) => quantity > 0) &&
+                setShowPopup(true)
+              }
+            >
+              Place Order
+            </button>
+            <button
+              className="w-[40px] h-[40px] md:w-[60px] md:h-[60px] rounded-full bg-[#ff4444] border-none flex justify-center items-center cursor-pointer shadow-[0_4px_8px_rgba(0,0,0,0.3)]"
+              onClick={onClick}
+            >
+              <span className="text-white text-2xl font-bold">✕</span>
+            </button>
+            <button
+              className="absolute -bottom-[50px] left-1/2 -translate-x-1/2 text-white text-base font-bold w-[120px] p-[5px] bg-red-400 rounded-lg hover:bg-red-500 transition-colors"
+              onClick={() => setQuantities({})}
+            >
+              Empty Cart
+            </button>
+          </div>
+
+          <div className="absolute w-full h-full">
+            {menu.map((item, index) => (
+              <div
+                key={index}
+                className={`absolute flex flex-col items-center justify-center w-[150px] md:w-[250px]  p-1 md:p-3 rounded-[10px] text-white text-center 
+                  ${index === 0 && "top-[5%] left-1/2 -translate-x-1/2"}
+                  ${index === 1 && "top-1/2 right-[5%] -translate-y-1/2"}
+                  ${index === 2 && "bottom-[5%] left-1/2 -translate-x-1/2"}
+                  ${index === 3 && "top-1/2 left-[5%] -translate-y-1/2"}`}
+              >
+                <img
+                  src="/images/Group20.svg"
+                  alt={item.name}
+                  className="w-[50px] h-auto mb-2"
+                />
+                <h3 className="my-[5px] text-lg">
+                  {item.name} {item.price}
+                </h3>
+                <div className="flex justify-center items-center gap-2 my-2 bg-white/10 rounded-[15px] p-[3px]">
+                  <button
+                    className="w-6 h-6 border-none rounded-full bg-white text-[#333] cursor-pointer font-bold"
+                    onClick={() => handleQuantityChange(index, -1)}
+                  >
+                    -
+                  </button>
+                  <span>{quantities[index] || 0}</span>
+                  <button
+                    className="w-6 h-6 border-none rounded-full bg-white text-[#333] cursor-pointer font-bold"
+                    onClick={() => handleQuantityChange(index, 1)}
+                  >
+                    +
+                  </button>
+                </div>
+                <button
+                  className="bg-[#ff4444] text-white border-none px-3 py-1 rounded-[5px] cursor-pointer text-[0.8em] mt-[5px]"
+                  onClick={() =>
+                    handleQuantityChange(index, -(quantities[index] || 0))
+                  }
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {showPopup && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1001]">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+              Order Summary
+            </h2>
+            <div className="space-y-2 mb-4">
+              {menu.map((item, index) => {
+                const quantity = quantities[index] || 0;
+                if (quantity > 0) {
+                  return (
+                    <div
+                      key={index}
+                      className="flex justify-between text-gray-700"
+                    >
+                      <span>
+                        {item.name} x{quantity}
+                      </span>
+                      <span>
+                        $
+                        {(
+                          parseFloat(item.price.replace("$", "")) * quantity
+                        ).toFixed(2)}
+                      </span>
+                    </div>
+                  );
+                }
+                return null;
+              })}
+              <div className="border-t pt-2 mt-2">
+                <div className="flex justify-between font-bold text-lg text-gray-800">
+                  <span>Total:</span>
+                  <span>${calculateTotal().toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <button
+                className="w-full py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
+                onClick={() => {
+                  setShowPopup(false);
+                  setQuantities({});
+                  onClick();
+                }}
+              >
+                Confirm Order
+              </button>
+              <button
+                className="w-full py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors"
+                onClick={() => setShowPopup(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default CircularMenu;
