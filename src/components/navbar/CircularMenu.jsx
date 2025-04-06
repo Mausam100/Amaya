@@ -68,9 +68,9 @@ const CircularMenu = ({ menu, onClick }) => {
                   ${index === 3 && "top-1/2 left-[5%] -translate-y-1/2"}`}
               >
                 <img
-                  src="/images/Group20.svg"
+                  src={item.img}
                   alt={item.name}
-                  className="w-[50px] h-auto mb-2"
+                  className="w-[100px] h-auto mb-2"
                 />
                 <h3 className="my-[5px] text-lg">
                   {item.name} {item.price}

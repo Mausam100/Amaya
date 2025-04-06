@@ -17,25 +17,25 @@ function App() {
       name: "Espreeso macchiato",
       price: "$12",
       description: "A rich and bold coffee brewed from high-quality beans.",
-      img: "/images/Group20.svg",
+      img: "/public/images/Machiaato.png",
     },
     {
       name: "Americano",
       price: "$15",
       description: "A rich and bold coffee brewed from high-quality beans.",
-      img: "/images/Group20.svg",
+      img: "/public/images/AmericanoCoffee.png",
     },
     {
       name: "Espresso con Panna",
       price: "$24",
       description: "A rich and bold coffee brewed from high-quality beans.",
-      img: "/images/Group20.svg",
+      img: "/public/images/Expresso.png",
     },
     {
       name: "Cappuccino",
       price: "$32",
       description: "A rich and bold coffee brewed from high-quality beans.",
-      img: "/images/Group20.svg",
+      img: "/public/images/CappuchinoCoffee.png",
     },
   ];
 
