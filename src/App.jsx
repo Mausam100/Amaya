@@ -4,11 +4,12 @@ import { Suspense, useState } from "react";
 import Scene from "./components/Model/Scene";
 import Navbar from "./components/navbar/Navbar";
 import Overlayer from "./components/Home/Overlayer";
+import ExploreOverlay from "./components/Home/ExploreOverlay";
 import Menu from "./components/Home/Menu";
-import CircularMenu from "./components/navbar/CircularMenu";
 
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
+  const [isExploreOverlayVisible, setExploreOverlayVisible] = useState(false); // State for ExploreOverlay
   const [selectedMenuItem, setSelectedMenuItem] = useState({});
 
   const menu = [
@@ -38,12 +39,24 @@ function App() {
     },
   ];
 
+  const handleScrollOffset = (offset) => {
+    // Show ExploreOverlay when offset is between 0.7214516784195425 and 0.8
+    if (offset >= 0.7214516784195425 && offset <= 0.8) {
+      setExploreOverlayVisible(true);
+    } else {
+      setExploreOverlayVisible(false);
+    }
+  };
+
   return (
     <div className="w-full h-screen bg-black select-none">
       <Canvas>
         <Suspense fallback={null}>
           <ScrollControls enabled={true} pages={10}>
-            <Scene setOverlayerVisible={setOverlayerVisible} />
+            <Scene
+              setOverlayerVisible={setOverlayerVisible}
+              onScrollOffsetChange={handleScrollOffset} // Pass the handler to Scene
+            />
             <Menu
               setOverlayerVisible={setOverlayerVisible}
               setSelectedMenuItem={setSelectedMenuItem}
@@ -60,14 +73,20 @@ function App() {
           <Navbar menu={menu} />
         </div>
       </div>
+
       {/* Description Overlay */}
       {isOverlayerVisible && (
-       <Overlayer
-       setOverlayerVisible={setOverlayerVisible}
-       setSelectedMenuItem={setSelectedMenuItem}
-       menuItem={selectedMenuItem}
-       menu={menu}
-     />
+        <Overlayer
+          setOverlayerVisible={setOverlayerVisible}
+          setSelectedMenuItem={setSelectedMenuItem}
+          menuItem={selectedMenuItem}
+          menu={menu}
+        />
+      )}
+
+      {/* Explore Overlay */}
+      {isExploreOverlayVisible && (
+        <ExploreOverlay setExploreOverlayVisible={setExploreOverlayVisible} />
       )}
     </div>
   );
