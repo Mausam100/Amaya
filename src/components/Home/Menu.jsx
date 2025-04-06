@@ -10,6 +10,7 @@ function MenuContent({ setOverlayerVisible, menu, setSelectedMenuItem }) {
         rotation={[-0.26, Math.PI / 4.8, 0.17]}
       >
         <Root
+        style={{ backgroundImage: "url('/images/whiteScroll.svg')" }}
           backgroundColor="#1d1208"
           sizeX={0.4}
           sizeY={0.68}
