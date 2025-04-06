@@ -1,9 +1,10 @@
 import { FontFamilyProvider, Root, Text } from "@react-three/uikit";
 import React from "react";
 
-function Menu({ setOverlayerVisible, menu, setSelectedMenuItem }) {
+function MenuContent({ setOverlayerVisible, menu, setSelectedMenuItem }) {
   return (
     <>
+      {/* Menu Card */}
       <group
         position={[-1.31, 0.66, -1.74]}
         rotation={[-0.26, Math.PI / 4.8, 0.17]}
@@ -12,49 +13,61 @@ function Menu({ setOverlayerVisible, menu, setSelectedMenuItem }) {
           backgroundColor="#1d1208"
           sizeX={0.4}
           sizeY={0.68}
-          alignItems={"center"}
+          alignItems="center"
           padding={5}
           gap={4}
           flexDirection="column"
-          
         >
-          <Text fontSize={6} color={"#fff"}>
+          <Text fontSize={7} color="#fff" fontFamily="bakeryroast" fontWeight={400}>
+            Today 
             Menu
           </Text>
+
           {menu.map((item, index) => (
             <Text
               key={index}
-              fontSize={3}
+              fontSize={6}
+              fontFamily="bakeryroast"
+              fontWeight={400}
+              color="#fff"
               borderBottomWidth={0.2}
               onClick={() => {
                 setSelectedMenuItem(item);
                 setOverlayerVisible(true);
               }}
-              onPointerOver={(e) => {
+              onPointerOver={() => {
                 document.body.style.cursor = "pointer";
               }}
-              onPointerOut={(e) => {
+              onPointerOut={() => {
                 document.body.style.cursor = "default";
               }}
-              color="#fff"
             >
               {item.name}
             </Text>
-            
           ))}
         </Root>
       </group>
-      <group
-        position={[-0.94, 0.60, -2.2]}
-        // rotation={[-0.26, Math.PI / /4.8, 0.17]}
-      >
-        <Root>
 
-        <Text fontSize={6} color={"#fff"}>Explore Our 3D Menu</Text>
+      {/* Title Section */}
+      <group position={[-0.94, 0.6, -2.2]}>
+        <Root>
+          <Text fontSize={8} color="#fff" fontFamily="bakeryroast" fontWeight={400}>
+            Explore Our 3d Menu
+          </Text>
         </Root>
       </group>
     </>
   );
 }
 
-export default Menu;
+export default function Menu(props) {
+  return (
+    <FontFamilyProvider
+      bakeryroast={{
+        400: '/fonts/BakeryRoastFixed.json',
+      }}
+    >
+      <MenuContent {...props} />
+    </FontFamilyProvider>
+  );
+}

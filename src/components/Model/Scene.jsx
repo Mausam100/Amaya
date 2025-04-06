@@ -9,6 +9,7 @@ import * as THREE from "three";
 import Model from "./Model";
 import { useFrame, useThree } from "@react-three/fiber";
 import About from "../Home/About";
+
 const curvePoints = [
   [-4, 1.8, -1],
   [2.5, 1.8, -1],
@@ -50,16 +51,11 @@ const Scene = ({ setOverlayerVisible }) => {
       setIsMobile(window.innerWidth <= 768);
     };
     window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const curve = useMemo(
-    () =>
-      new THREE.CatmullRomCurve3(
-        curvePoints.map((p) => new THREE.Vector3(...p))
-      ),
+    () => new THREE.CatmullRomCurve3(curvePoints.map((p) => new THREE.Vector3(...p))),
     []
   );
 
@@ -80,12 +76,10 @@ const Scene = ({ setOverlayerVisible }) => {
   useFrame(() => {
     const scrollOffset = scroll.offset;
     setOffset(scrollOffset);
-    console.log(scrollOffset);
 
     const basePosition = curve.getPointAt(scrollOffset);
     if (!basePosition) return;
 
-    // 🔁 Find current lookAt zone based on scroll offset
     let currentTarget = lookAtZones[0].target;
     for (let i = 0; i < lookAtZones.length; i++) {
       const zone = lookAtZones[i];
@@ -95,11 +89,9 @@ const Scene = ({ setOverlayerVisible }) => {
       }
     }
 
-    // 👀 Smoothly interpolate camera lookAt
     targetLookAt.lerp(currentTarget, 0.05);
     camera.lookAt(targetLookAt);
 
-    // 🖱️ Apply subtle mouse movement
     const maxMove = 0.1;
     const mouseEffect = new THREE.Vector3(
       mouseOffset.x * maxMove,
@@ -114,97 +106,63 @@ const Scene = ({ setOverlayerVisible }) => {
   return (
     <>
       <group position={[-1.3, 0.72, -2.5]} rotation={[0, -Math.PI / 2, 0]}>
+        {isMobile === false ? (
+          <>
+            <Text
+              onClick={() => setOverlayerVisible((prev) => !prev)}
+              onPointerOver={() => (document.body.style.cursor = "pointer")}
+              onPointerOut={() => (document.body.style.cursor = "default")}
+              fillOpacity={offset > 0.12 && offset < 0.35 ? Math.min(Math.max((offset - 0.12) * 15, 0), 1) : 0}
+              color="white"
+              position={[0.927, 1.012, -1.5]}
+              fontSize={0.1}
+              maxWidth={1}
+              lineHeight={1.2}
+              font="/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
+            >
+              Welcome to Amaya Café – A digital café experience like never before!
+            </Text>
 
-        <>
-          {isMobile === false ? (
-            <>
-              <Text
-                onClick={() => {
-                  setOverlayerVisible((prev) => !prev);
-                }}
-                onPointerOver={(e) => {
-                  document.body.style.cursor = "pointer";
-                }}
-                onPointerOut={(e) => {
-                  document.body.style.cursor = "default";
-                }}
-                fillOpacity={
-                  offset > 0.12 && offset < 0.35
-                    ? Math.min(Math.max((offset - 0.12) * 15, 0), 1)
-                    : 0
-                }
-                color="white"
-                position={[0.927, 1.012, -1.5]}
-                fontSize={0.1}
-                maxWidth={1}
-                lineHeight={1.2}
-                 font="/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
-              >
-                Welcome to Amaya Café – A digital café experience like never before!
-              </Text>
+            <Text
+              fillOpacity={offset > 0.0 && offset < 0.3 ? Math.min(Math.max((offset - 0.0) * 115, 0), 1) : 0}
+              color="white"
+              position={[1.87, 1.6, 1.1]}
+              fontSize={0.2}
+              maxWidth={1}
+              lineHeight={1.2}
+              font="/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
+            >
+              Amaya
+            </Text>
+          </>
+        ) : (
+          <>
+            <Text
+              onClick={() => setOverlayerVisible((prev) => !prev)}
+              onPointerOver={() => (document.body.style.cursor = "pointer")}
+              onPointerOut={() => (document.body.style.cursor = "default")}
+              fillOpacity={offset > 0.09 && offset < 0.35 ? Math.min(Math.max((offset - 0.09) * 15, 0), 1) : 0}
+              color="white"
+              position={[1.427, 1.212, -1.5]}
+              fontSize={0.1}
+              maxWidth={1}
+              lineHeight={1.2}
+            >
+              Welcome to Amaya Café – A digital café experience like never before!
+            </Text>
 
-              <Text
-                fillOpacity={
-                  offset > 0.0 && offset < 0.3
-                    ? Math.min(Math.max((offset - 0.0) * 115, 0), 1)
-                    : 0
-                }
-                color="white"
-                position={[1.87, 1.6, 1.1]}
-                fontSize={0.2}
-                maxWidth={1}
-                lineHeight={1.2}
-                font="/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
-              >
-                Amaya
-              </Text>
-            </>
-          ):(
-            <>
-             <Text
-          onClick={() => {
-            setOverlayerVisible((prev) => !prev);
-          }}
-          onPointerOver={(e) => {
-            document.body.style.cursor = "pointer";
-          }}
-          onPointerOut={(e) => {
-            document.body.style.cursor = "default";
-          }}
-          fillOpacity={
-            offset > 0.09 && offset < 0.35
-              ? Math.min(Math.max((offset - 0.09) * 15, 0), 1)
-              : 0
-          }
-          color="white"
-          position={[1.427, 1.212, -1.5]}
-          fontSize={0.1}
-          maxWidth={1}
-          lineHeight={1.2}
-        >
-          Welcome to Amaya Café – A digital café experience like never before!
-        </Text>
-
-        <Text
-          fillOpacity={
-            offset > 0.0 && offset < 0.3
-              ? Math.min(Math.max((offset - 0.0) * 50, 0), 1)
-              : 0
-          }
-          color="white"
-          position={[1.57, 1.7, 1.1]}
-          fontSize={0.2}
-          maxWidth={1}
-          lineHeight={1.2}
-          fontStyle="/"
-        >
-          Amaya
-        </Text>
-
-            </>
-          )}
-        </>
-
+            <Text
+              fillOpacity={offset > 0.0 && offset < 0.3 ? Math.min(Math.max((offset - 0.0) * 50, 0), 1) : 0}
+              color="white"
+              position={[1.57, 1.7, 1.1]}
+              fontSize={0.2}
+              maxWidth={1}
+              lineHeight={1.2}
+            >
+              Amaya
+            </Text>
+          </>
+        )}
         <About offset={offset} />
       </group>
 
