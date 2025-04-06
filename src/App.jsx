@@ -10,34 +10,6 @@ function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState({});
 
-  const menu = [
-    {
-    name: "Espreeso macchiato",
-    price: "$12",
-    description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/images/Group20.svg"
-  },
-  {
-    name: "Americano",
-    price: "$15",
-    description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/images/Group20.svg"
-  },
-  {
-    name: "Espresso con Panna",
-    price: "$24",
-    description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/images/Group20.svg"
-  },
-  {
-    name: "cappuccino",
-    price: "$32vwww",
-    description: "A rich and bold coffee brewed from high-quality beans.",
-    img: "/images/Group20.svg"
-  }
-]
-
-  // console.log(selectedMenuItem);
 
   // const menu = ["Americano", "Cappuccino", "Latte", "Mocha", "Matcha Latte"];
   const menu = [
