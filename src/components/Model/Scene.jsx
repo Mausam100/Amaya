@@ -142,6 +142,7 @@ const Scene = ({ setOverlayerVisible }) => {
               color="white"
               position={[1.427, 1.212, -1.5]}
               fontSize={0.1}
+              font="/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
               maxWidth={1}
               lineHeight={1.2}
             >
@@ -155,6 +156,7 @@ const Scene = ({ setOverlayerVisible }) => {
               fontSize={0.2}
               maxWidth={1}
               lineHeight={1.2}
+               font="/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
             >
               Amaya
             </Text>
