@@ -39,7 +39,7 @@ const lookAtZones = [
   { start: 0.9, end: 1, target: new THREE.Vector3(-0.8, 1.1, -1.8) },
 ];
 
-const Scene = ({ setOverlayerVisible }) => {
+const Scene = ({ setOverlayerVisible, onScrollOffsetChange }) => {
   const { camera } = useThree();
   const scroll = useScroll();
   const [offset, setOffset] = useState(0);
@@ -76,6 +76,11 @@ const Scene = ({ setOverlayerVisible }) => {
   useFrame(() => {
     const scrollOffset = scroll.offset;
     setOffset(scrollOffset);
+
+    // Notify App about the offset change
+    if (onScrollOffsetChange) {
+      onScrollOffsetChange(scrollOffset);
+    }
 
     const basePosition = curve.getPointAt(scrollOffset);
     if (!basePosition) return;
