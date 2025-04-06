@@ -75,7 +75,7 @@ const Navbar = ({ menu }) => {
           filter: "blur(0px)",
           duration: 0.65,
           stagger: 0.1,
-          ease: "back.out(1.4)", // Apple-style bounce
+          ease: "back.out(1.4)",
         });
     } else {
       tl.to(targets, {
@@ -107,13 +107,11 @@ const Navbar = ({ menu }) => {
               opacity: 0,
               width: "0vw",
               height: "0vh",
-              // borderRadius: "70%",
             }}
             animate={{
               opacity: 1,
               width: "100vw",
               height: "100vh",
-              // borderRadius: "1rem",
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}

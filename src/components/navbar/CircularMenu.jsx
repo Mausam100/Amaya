@@ -1,10 +1,78 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const CircularMenu = ({ menu, onClick }) => {
   const [quantities, setQuantities] = useState({});
   const [showPopup, setShowPopup] = useState(false);
+  const containerRef = useRef(null);
+  const menuItemsRef = useRef([]);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.out" },
+    });
+    tl.from(containerRef.current, {
+      scale: 0.5,
+      opacity: 0,
+      duration: 0.8,
+      ease: "elastic.out(1, 0.7)",
+    });
+    tl.from(
+      ".center-controls > *",
+      {
+        scale: 0,
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        stagger: 0.1,
+      },
+      "-=0.4"
+    );
+    tl.from(menuItemsRef.current, {
+      scale: 0,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      transformOrigin: "center center",
+    });
+  }, []);
+
+  const handleClose = () => {
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.inOut" },
+      onComplete: () => onClick(),
+    });
+
+    tl.to([...menuItemsRef.current].reverse(), {
+      scale: 0,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      transformOrigin: "center center",
+    })
+      .to(
+        ".center-controls > *",
+        {
+          scale: 0,
+          opacity: 0,
+          y: 20,
+          duration: 0.5,
+          stagger: 0.1,
+        },
+        "-=0.3"
+      )
+      .to(
+        containerRef.current,
+        {
+          scale: 0.5,
+          opacity: 0,
+          duration: 0.8,
+          ease: "elastic.in(1, 0.7)",
+        },
+        "-=0.4"
+      );
+  };
 
   const handleQuantityChange = (itemId, change) => {
     setQuantities((prev) => {
@@ -20,19 +88,15 @@ const CircularMenu = ({ menu, onClick }) => {
       return total + price * quantity;
     }, 0);
   };
-  const tl = gsap.timeline({});
-  useGSAP(()=>{
-    tl.from("clos-bn", {
-      scale: 0,
-      duration: 0.5,
-      stagger: 0.2,
-    })
-  })
+
   return (
     <>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]">
-        <div className="relative w-[500px] h-[750px] md:w-[800px] md:h-[800px] rounded-full bg-black/30 bg-[url('/images/food-pattern-bg.png')] bg-cover scale-[0.8]">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-center">
+        <div
+          ref={containerRef}
+          className="relative w-[500px] h-[750px] md:w-[800px] md:h-[800px] rounded-full bg-black/30 bg-[url('/images/food-pattern-bg.png')] bg-cover scale-[0.8]"
+        >
+          <div className="center-controls absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-center">
             <button
               className="absolute -top-[50px] left-1/2 -translate-x-1/2 text-white text-base font-bold w-[120px] p-[5px] bg-amber-700 rounded-lg hover:bg-amber-600 transition-colors"
               onClick={() =>
@@ -45,7 +109,9 @@ const CircularMenu = ({ menu, onClick }) => {
             </button>
             <button
               className="clos-bn w-[40px] h-[40px] md:w-[60px] md:h-[60px] rounded-full bg-[#ff4444] border-none flex justify-center items-center cursor-pointer shadow-[0_4px_8px_rgba(0,0,0,0.3)]"
-              onClick={onClick}
+              onClick={() => {
+                handleClose();
+              }}
             >
               <span className="text-white text-2xl font-bold">✕</span>
             </button>
@@ -61,7 +127,8 @@ const CircularMenu = ({ menu, onClick }) => {
             {menu.map((item, index) => (
               <div
                 key={index}
-                className={`absolute flex flex-col items-center justify-center w-[150px] md:w-[250px]  p-1 md:p-3 rounded-[10px] text-white text-center 
+                ref={(el) => (menuItemsRef.current[index] = el)}
+                className={`absolute flex flex-col items-center justify-center w-[150px] md:w-[250px] p-1 md:p-3 rounded-[10px] text-white text-center 
                   ${index === 0 && "top-[5%] left-1/2 -translate-x-1/2"}
                   ${index === 1 && "top-1/2 right-[5%] -translate-y-1/2"}
                   ${index === 2 && "bottom-[5%] left-1/2 -translate-x-1/2"}
