@@ -44,7 +44,7 @@ const Overlayer = ({ setOverlayerVisible, menuItem }) => {
       scale: 0,
       duration: 0.5,
       stagger: 0.2,
-    });
+    },"+0.5");
   }, []);
 
   return (
