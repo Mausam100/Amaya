@@ -74,7 +74,7 @@ const Overlayer = ({ setOverlayerVisible, menuItem }) => {
                 className="w-44 object-cover h-auto menuImage"
               />
               <img
-                src={"/public/images/Group21.svg"}
+                src={"/images/Group21.svg"}
                 alt={menuItem.name}
                 className=" absolute  object-cover h-auto menuline"
               />
@@ -92,7 +92,7 @@ const Overlayer = ({ setOverlayerVisible, menuItem }) => {
               <img
                 src={menuItem.img}
                 alt={menuItem.name}
-                className=" object-cover  menuImage"
+                className=" object-cover menuImage"
               />
 
               <p className="text-white text-xl price">Price: {menuItem.price}</p>

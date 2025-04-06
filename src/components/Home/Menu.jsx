@@ -14,11 +14,11 @@ function MenuContent({ setOverlayerVisible, menu, setSelectedMenuItem }) {
           sizeX={0.4}
           sizeY={0.68}
           alignItems="center"
-          padding={5}
-          gap={4}
+          padding={6}
+          gap={2}
           flexDirection="column"
         >
-          <Text fontSize={7} color="#fff" fontFamily="bakeryroast" fontWeight={400}>
+          <Text fontSize={6}  color="#fff" fontFamily="bakeryroast" fontWeight={400}>
             Today 
             Menu
           </Text>
@@ -26,11 +26,11 @@ function MenuContent({ setOverlayerVisible, menu, setSelectedMenuItem }) {
           {menu.map((item, index) => (
             <Text
               key={index}
-              fontSize={6}
+              fontSize={5}
               fontFamily="bakeryroast"
               fontWeight={400}
               color="#fff"
-              borderBottomWidth={0.2}
+              borderBottomWidth={0.3}
               onClick={() => {
                 setSelectedMenuItem(item);
                 setOverlayerVisible(true);
@@ -64,7 +64,7 @@ export default function Menu(props) {
   return (
     <FontFamilyProvider
       bakeryroast={{
-        400: '/fonts/BakeryRoastFixed.json',
+        400: '/fonts/CreamyCoffeeFixed.json',
       }}
     >
       <MenuContent {...props} />

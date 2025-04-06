@@ -60,7 +60,6 @@ function App() {
           <Navbar menu={menu} />
         </div>
       </div>
-
       {/* Description Overlay */}
       {isOverlayerVisible && (
         <Overlayer
