@@ -1,4 +1,4 @@
-import { Root, Text } from "@react-three/uikit";
+import { FontFamilyProvider, Root, Text } from "@react-three/uikit";
 import React from "react";
 
 function Menu({ setOverlayerVisible, menu, setSelectedMenuItem }) {
@@ -16,6 +16,7 @@ function Menu({ setOverlayerVisible, menu, setSelectedMenuItem }) {
           padding={5}
           gap={4}
           flexDirection="column"
+          
         >
           <Text fontSize={6} color={"#fff"}>
             Menu
@@ -39,6 +40,7 @@ function Menu({ setOverlayerVisible, menu, setSelectedMenuItem }) {
             >
               {item.name}
             </Text>
+            
           ))}
         </Root>
       </group>

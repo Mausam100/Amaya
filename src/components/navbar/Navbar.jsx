@@ -3,16 +3,13 @@ import { motion, AnimatePresence } from "motion/react";
 
 import React, { useState } from "react";
 import NavComp from "./NavComp";
-import Cup from "../assets/images/cup.png"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHover, setIsHover] = useState(false);
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
   return (
     <main className="">
       <AnimatePresence>
@@ -101,7 +98,7 @@ const Navbar = () => {
                     ease: "linear",
                   }}
                   style={{ originX: 1 }}
-                  src={Cup}
+                  src={"/images/Navlogo.png"}
                   alt="cup"
                   className="w-14 mx-auto h-12 translate-y-0 z-50"
                 />

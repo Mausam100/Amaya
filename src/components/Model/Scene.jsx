@@ -8,8 +8,7 @@ import {
 import * as THREE from "three";
 import Model from "./Model";
 import { useFrame, useThree } from "@react-three/fiber";
-import About from "./About";
-
+import About from "../Home/About";
 const curvePoints = [
   [-4, 1.8, -1],
   [2.5, 1.8, -1],
@@ -115,6 +114,97 @@ const Scene = ({ setOverlayerVisible }) => {
   return (
     <>
       <group position={[-1.3, 0.72, -2.5]} rotation={[0, -Math.PI / 2, 0]}>
+
+        <>
+          {isMobile === false ? (
+            <>
+              <Text
+                onClick={() => {
+                  setOverlayerVisible((prev) => !prev);
+                }}
+                onPointerOver={(e) => {
+                  document.body.style.cursor = "pointer";
+                }}
+                onPointerOut={(e) => {
+                  document.body.style.cursor = "default";
+                }}
+                fillOpacity={
+                  offset > 0.12 && offset < 0.35
+                    ? Math.min(Math.max((offset - 0.12) * 15, 0), 1)
+                    : 0
+                }
+                color="white"
+                position={[0.927, 1.012, -1.5]}
+                fontSize={0.1}
+                maxWidth={1}
+                lineHeight={1.2}
+                 font="/public/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
+              >
+                Welcome to Amaya Café – A digital café experience like never before!
+              </Text>
+
+              <Text
+                fillOpacity={
+                  offset > 0.0 && offset < 0.3
+                    ? Math.min(Math.max((offset - 0.0) * 115, 0), 1)
+                    : 0
+                }
+                color="white"
+                position={[1.87, 1.6, 1.1]}
+                fontSize={0.2}
+                maxWidth={1}
+                lineHeight={1.2}
+                font="/public/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf"
+              >
+                Amaya
+              </Text>
+            </>
+          ):(
+            <>
+             <Text
+          onClick={() => {
+            setOverlayerVisible((prev) => !prev);
+          }}
+          onPointerOver={(e) => {
+            document.body.style.cursor = "pointer";
+          }}
+          onPointerOut={(e) => {
+            document.body.style.cursor = "default";
+          }}
+          fillOpacity={
+            offset > 0.09 && offset < 0.35
+              ? Math.min(Math.max((offset - 0.09) * 15, 0), 1)
+              : 0
+          }
+          color="white"
+          position={[1.427, 1.212, -1.5]}
+          fontSize={0.1}
+          maxWidth={1}
+          lineHeight={1.2}
+        >
+          Welcome to Amaya Café – A digital café experience like never before!
+        </Text>
+
+        <Text
+          fillOpacity={
+            offset > 0.0 && offset < 0.3
+              ? Math.min(Math.max((offset - 0.0) * 50, 0), 1)
+              : 0
+          }
+          color="white"
+          position={[1.57, 1.7, 1.1]}
+          fontSize={0.2}
+          maxWidth={1}
+          lineHeight={1.2}
+          fontStyle="/"
+        >
+          Amaya
+        </Text>
+
+            </>
+          )}
+        </>
+
         {isMobile === false ? (
           <>
             <Text
@@ -184,6 +274,7 @@ const Scene = ({ setOverlayerVisible }) => {
             </Text>
           </>
         )}
+
         <About offset={offset} />
       </group>
 
