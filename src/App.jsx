@@ -5,7 +5,7 @@ import Scene from "./components/Model/Scene";
 import Navbar from "./components/navbar/Navbar";
 import Overlayer from "./components/Home/Overlayer";
 import Menu from "./components/Home/Menu";
-import CircularMenu from "./components/Home/CircularMenu";
+import CircularMenu from "./components/navbar/CircularMenu";
 
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);

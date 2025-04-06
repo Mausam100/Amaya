@@ -2,8 +2,8 @@
 import { motion, AnimatePresence } from "motion/react";
 import React, { useState, useRef, useEffect } from "react";
 import NavComp from "./NavComp";
-import CircularMenu from "../Home/CircularMenu";
-import Gallery from "../Home/Gallery";
+import CircularMenu from "./CircularMenu";
+import Gallery from "./Gallery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 

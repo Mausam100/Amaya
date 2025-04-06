@@ -1,3 +1,5 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import React, { useState } from "react";
 
 const CircularMenu = ({ menu, onClick }) => {
@@ -18,7 +20,14 @@ const CircularMenu = ({ menu, onClick }) => {
       return total + price * quantity;
     }, 0);
   };
-
+  const tl = gsap.timeline({});
+  useGSAP(()=>{
+    tl.from("clos-bn", {
+      scale: 0,
+      duration: 0.5,
+      stagger: 0.2,
+    })
+  })
   return (
     <>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]">
@@ -35,7 +44,7 @@ const CircularMenu = ({ menu, onClick }) => {
               Place Order
             </button>
             <button
-              className="w-[40px] h-[40px] md:w-[60px] md:h-[60px] rounded-full bg-[#ff4444] border-none flex justify-center items-center cursor-pointer shadow-[0_4px_8px_rgba(0,0,0,0.3)]"
+              className="clos-bn w-[40px] h-[40px] md:w-[60px] md:h-[60px] rounded-full bg-[#ff4444] border-none flex justify-center items-center cursor-pointer shadow-[0_4px_8px_rgba(0,0,0,0.3)]"
               onClick={onClick}
             >
               <span className="text-white text-2xl font-bold">✕</span>

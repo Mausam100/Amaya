@@ -1,6 +1,7 @@
 import React from "react";
 
 const Gallery = () => {
+  
   return (
     <div className="max-w-7xl mx-auto p-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[600px]">
