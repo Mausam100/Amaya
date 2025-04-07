@@ -65,5 +65,4 @@ const addtocart = ({ handleNext, handlePrev }) => {
   </svg>
   )
 }
-
 export default addtocart

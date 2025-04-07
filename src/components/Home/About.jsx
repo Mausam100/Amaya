@@ -11,5 +11,4 @@ function About({ offset }) {
     </group>
   );
 }
-
 export default About;

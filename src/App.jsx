@@ -6,6 +6,7 @@ import Navbar from "./components/navbar/Navbar";
 import Overlayer from "./components/Home/Overlayer";
 import ExploreOverlay from "./components/Home/ExploreOverlay";
 import Menu from "./components/Home/Menu";
+import { useEffect } from "react";
 
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
@@ -38,13 +39,31 @@ function App() {
       img: "/images/CappuchinoCoffee.png",
     },
   ];
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const handleScrollOffset = (offset) => {
     // Show ExploreOverlay when offset is between 0.7214516784195425 and 0.8
-    if (offset >= 0.7214516784195425 && offset <= 0.8) {
-      setExploreOverlayVisible(true);
-    } else {
-      setExploreOverlayVisible(false);
+    if(isMobile){
+      if (offset >= 0.7514516784195425 && offset <= 0.8) {
+        setExploreOverlayVisible(true);
+      } else {
+        setExploreOverlayVisible(false);
+      }
+    }else{
+      if (offset >= 0.7214516784195425 && offset <= 0.8) {
+        setExploreOverlayVisible(true);
+      } else {
+        setExploreOverlayVisible(false);
+      }
     }
   };
 
