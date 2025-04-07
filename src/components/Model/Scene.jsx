@@ -74,7 +74,10 @@ const Scene = ({ setOverlayerVisible, onScrollOffsetChange }) => {
   }, []);
 
   useFrame(() => {
-    const scrollOffset = scroll.offset;
+    let scrollOffset = scroll.offset;
+
+    // Clamp the scrollOffset value between 0 and 1
+    scrollOffset = Math.max(0, Math.min(1, scrollOffset));
     setOffset(scrollOffset);
 
     // Notify App about the offset change

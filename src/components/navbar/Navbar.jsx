@@ -115,7 +115,7 @@ const Navbar = ({ menu }) => {
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="overflow-hidden flex flex-col gap-4 top-0 right-0 bg-transparent backdrop-blur-md z-10 absolute"
+            className="overflow-hidden flex flex-col gap-4 top-0 right-0 bg-transparent backdrop-blur-md z-50 absolute"
             style={{ pointerEvents: isOpen ? "auto" : "none" }}
           >
             <div className="flex flex-col h-full justify-center items-center md:justify-start md:items-end mr-0 md:mr-30 pt-4 gap-6">
