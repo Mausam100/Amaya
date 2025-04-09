@@ -6,13 +6,14 @@ import CircularMenu from "./CircularMenu";
 import Gallery from "./Gallery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import BookingFrom from "../Home/BookingFrom";
 
 const Navbar = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
-
+  const [showReserve, setShowReserve] = useState(false);
   const navRef = useRef();
 
   const toggleMenu = () => {
@@ -26,6 +27,7 @@ const Navbar = ({ menu }) => {
           setShowMenu(false);
         } else {
           setShowGallery(false);
+          setShowReserve(false);
           setShowMenu(true);
         }
         break;
@@ -34,7 +36,17 @@ const Navbar = ({ menu }) => {
           setShowGallery(false);
         } else {
           setShowMenu(false);
+          setShowReserve(false);
           setShowGallery(true);
+        }
+        break;
+      case "reserve":
+        if (showReserve) {
+          setShowReserve(false);
+        } else {
+          setShowMenu(false);
+          setShowGallery(false);
+          setShowReserve(true);
         }
         break;
       default:
@@ -118,7 +130,7 @@ const Navbar = ({ menu }) => {
             className="overflow-hidden flex flex-col gap-4 top-0 right-0 bg-transparent backdrop-blur-md z-50 absolute"
             style={{ pointerEvents: isOpen ? "auto" : "none" }}
           >
-            <div className="flex flex-col h-full justify-center items-center md:justify-start md:items-end mr-0 md:mr-30 pt-4 gap-6">
+            <div className="flex flex-col h-full justify-center items-center md:justify-center md:items-end mr-0 md:mr-30 pt-4 gap-6">
               <div
                 ref={navRef}
                 className={`flex flex-col gap-4 ${
@@ -138,7 +150,12 @@ const Navbar = ({ menu }) => {
                     showCurrentMenu("gallery");
                   }}
                 />
-                <NavComp text={"Reserve"} />
+                <NavComp
+                  text={"Reserve"}
+                  onClick={() => {
+                    showCurrentMenu("reserve");
+                  }}
+                />
               </div>
             </div>
 
@@ -164,6 +181,7 @@ const Navbar = ({ menu }) => {
                 <Gallery />
               </>
             )}
+            {showReserve && <BookingFrom />}
           </motion.div>
         )}
       </AnimatePresence>
