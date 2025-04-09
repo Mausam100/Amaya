@@ -74,18 +74,18 @@ const Overlayer = ({
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-screen p-30 backdrop-blur-sm z-50 flex items-center justify-center">
+    <div className="fixed top-0 left-0 w-full h-screen p-30 bg-[#00000087] backdrop-blur-sm z-50 flex items-center justify-center ">
       <button
         onClick={() => setOverlayerVisible(false)}
-        className="absolute cursor-pointer top-10 right-10 text-amber-700 font-extrabold text-4xl hover:text-gray-300"
+        className="absolute cursor-pointer top-10 right-10 text-white font-extrabold text-5xl hover:text-gray-300"
       >
         ✕
       </button>
       {isMobile === false ? (
-        <div className="p-8 w-full h-full flex items-center justify-center rounded-lg backdrop-blur-sm relative">
+        <div className="p-8 w-full h-full flex items-center justify-center rounded-lg  relative">
           {menuItem && (
             <>
-              <h2 className="text-white absolute w-1/3 ml-110 md:ml-130 md:2xl menuname xl:ml-159 -mt-32">
+              <h2 className="text-white absolute w-1/3 ml-110 md:ml-130 md:2xl menuname xl:ml-159 -mt-35">
                 {menuItem.name}
               </h2>
               <p className="text-white absolute -ml-79 mt-28 price">

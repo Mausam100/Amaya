@@ -36,7 +36,7 @@ const lookAtZones = [
 
 const maxMove = 0.1; // world-space parallax magnitude
 
-export default function Scene({ setOverlayerVisible, onScrollOffsetChange }) {
+export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange, setSelectedMenuItem }) {
   const { camera, mouse } = useThree();
   const scroll = useScroll();
 
@@ -228,7 +228,7 @@ export default function Scene({ setOverlayerVisible, onScrollOffsetChange }) {
         environmentIntensity={0.8}
         backgroundRotation={[0, Math.PI / 2, 0]}
       />
-      <Model />
+      <Model menu={menu} setOverlayerVisible={setOverlayerVisible} setSelectedMenuItem={setSelectedMenuItem} />
       <ambientLight intensity={1} />
     </>
   );

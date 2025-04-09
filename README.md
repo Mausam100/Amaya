@@ -6,26 +6,6 @@ Welcome to our café's web application, a dynamic platform featuring interactive
 
 <p>Welcome to our café's 3D web application—a cutting-edge platform with a user-friendly interface featuring a circular menu, stunning gallery, music control, loading animation, and explore overlay. Developed using React for its modular architecture and styled with Tailwind CSS for a modern, responsive design. The application leverages 3D capabilities to enhance user interaction and visual appeal.</p>
 
-<h2>UI Components</h2>
-
-<h3>CircularMenu</h3>
-<p>Located in <code>src/components/navbar/CircularMenu.jsx</code>, this component provides a circular menu with seamless animations for opening and closing, enhancing user engagement.</p>
-
-<h3>Gallery</h3>
-<p>Found in <code>src/components/navbar/Gallery.jsx</code>, this component showcases a visually striking gallery of café images, complete with hover effects to elevate the user experience.</p>
-
-<h3>MusicButton</h3>
-<p>Situated in <code>src/components/Home/MusicButton.jsx</code>, this component offers a button for users to effortlessly play or pause background music.</p>
-
-<h3>Loader</h3>
-<p>Available in <code>src/components/Home/Loader.jsx</code>, this component features a loading animation, allowing users to choose to enter the site with or without music.</p>
-
-<h3>ExploreOverlay</h3>
-<p>Positioned in <code>src/components/Home/ExploreOverlay.jsx</code>, this component displays an overlay inviting users to explore various sections of the café.</p>
-
-<h3>BookingForm</h3>
-<p>Located in <code>src/components/Home/BookingFrom.jsx</code>, this component provides a simple form for making café reservations.</p>
-
 <h2>Installation</h2>
 
 <ol>
@@ -48,6 +28,26 @@ Welcome to our café's web application, a dynamic platform featuring interactive
     </li>
     <li>Open your browser and go to <code>http://localhost:5173</code> to explore the application.</li>
 </ol>
+<h2>UI Components</h2>
+
+<h3>CircularMenu</h3>
+<p>Located in <code>src/components/navbar/CircularMenu.jsx</code>, this component provides a circular menu with seamless animations for opening and closing, enhancing user engagement.</p>
+
+<h3>Gallery</h3>
+<p>Found in <code>src/components/navbar/Gallery.jsx</code>, this component showcases a visually striking gallery of café images, complete with hover effects to elevate the user experience.</p>
+
+<h3>MusicButton</h3>
+<p>Situated in <code>src/components/Home/MusicButton.jsx</code>, this component offers a button for users to effortlessly play or pause background music.</p>
+
+<h3>Loader</h3>
+<p>Available in <code>src/components/Home/Loader.jsx</code>, this component features a loading animation, allowing users to choose to enter the site with or without music.</p>
+
+<h3>ExploreOverlay</h3>
+<p>Positioned in <code>src/components/Home/ExploreOverlay.jsx</code>, this component displays an overlay inviting users to explore various sections of the café.</p>
+
+<h3>BookingForm</h3>
+<p>Located in <code>src/components/Home/BookingFrom.jsx</code>, this component provides a simple form for making café reservations.</p>
+
 
 <h2>Technologies Used</h2>
 

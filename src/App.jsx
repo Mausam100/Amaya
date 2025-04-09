@@ -5,7 +5,7 @@ import Scene from "./components/Model/Scene";
 import Navbar from "./components/navbar/Navbar";
 import Overlayer from "./components/Home/Overlayer";
 import ExploreOverlay from "./components/Home/ExploreOverlay";
-import Menu from "./components/Home/Menu";
+import Menu from "./components/Model/Menu";
 import BookingFrom from "./components/Home/BookingFrom";
 import Loader from "./components/Home/Loader";
 import MusicButton from "./components/Home/MusicButton";
@@ -42,27 +42,27 @@ function App() {
 
   const menu = [
     {
-      name: "Espreeso macchiato",
+      name: "Espresso Macchiato",
       price: "$12",
-      description: "A rich and bold coffee brewed from high-quality beans.",
+      description: "A classic espresso topped with a small amount of steamed milk, offering a perfect balance of rich coffee flavor and creamy texture.",
       img: "/images/Machiaato.png",
     },
     {
       name: "Americano",
       price: "$15",
-      description: "A rich and bold coffee brewed from high-quality beans.",
+      description: "A smooth and robust coffee made by diluting a shot of espresso with hot water, providing a rich and full-bodied taste.",
       img: "/images/AmericanoCoffee.png",
     },
     {
       name: "Espresso con Panna",
       price: "$24",
-      description: "A rich and bold coffee brewed from high-quality beans.",
+      description: "A luxurious espresso topped with a dollop of whipped cream, creating a delightful contrast of strong coffee and creamy sweetness.",
       img: "/images/Expresso.png",
     },
     {
       name: "Cappuccino",
       price: "$32",
-      description: "A rich and bold coffee brewed from high-quality beans.",
+      description: "A popular coffee drink featuring equal parts of espresso, steamed milk, and milk foam, delivering a harmonious blend of flavors and textures.",
       img: "/images/CappuchinoCoffee.png",
     },
   ];
@@ -121,6 +121,9 @@ function App() {
                 <Scene
                   setOverlayerVisible={setOverlayerVisible}
                   onScrollOffsetChange={handleScrollOffset}
+                  setSelectedMenuItem={setSelectedMenuItem}
+                  menu={menu}
+
                 />
                 <Menu
                   setOverlayerVisible={setOverlayerVisible}
