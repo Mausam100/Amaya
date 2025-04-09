@@ -173,8 +173,8 @@ export default function Model(props) {
                     </group>
                     <group
                       name="Menu001_10_23"
-                      position={[-1.845, 0.735, 0.385]}
-                      rotation={[0, 1.428, 0]}
+                      position={[-1.740, 0.735, 0.040]}
+                      rotation={[0, 1.128, 0]}
                     >
                       <group name="Object_24_24">
                         <mesh

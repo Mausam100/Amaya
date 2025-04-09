@@ -143,7 +143,7 @@ const Navbar = ({ menu }) => {
                     showCurrentMenu("cart");
                   }}
                 />
-                <NavComp text={"3D Tour"} />
+               
                 <NavComp
                   text={"Gallery"}
                   onClick={() => {
