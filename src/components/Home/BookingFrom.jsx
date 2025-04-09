@@ -4,6 +4,7 @@ function BookingFrom() {
   return (
     <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-sm:w-full flex items-center justify-center z-50">
       <div className="w-full bg-[#1d1d1da6] backdrop-blur-xs rounded-lg p-8 shadow-lg">
+        <img src="/images/logo.svg" alt="logo" className="w-30 mx-auto mb-6" />
         <h2 className="text-center text-2xl font-bold text-[#d4af7a] mb-6">
           Make a Reserve
         </h2>
