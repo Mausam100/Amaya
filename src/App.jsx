@@ -18,12 +18,16 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const handleEnterWithMusic = () => {
+    const audio = new Audio('/music/lo-fi-in-coffeshop-SBA-346459437-preview.mp3');
+    audio.volume = 0.5;
+    audio.play();
     console.log("Entering with music...");
     setIsLoaded(true);
     // Add logic to play music here
   };
 
   const handleEnterWithoutMusic = () => {
+ 
     console.log("Entering without music...");
     setIsLoaded(true);
     // Add logic to disable music here
