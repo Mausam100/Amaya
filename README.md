@@ -1,7 +1,3 @@
-# Project Overview
-
-Welcome to our café's web application, a dynamic platform featuring interactive elements like a circular menu, a captivating gallery, a music button, a loader, and an explore overlay. This application is crafted using React for its robust component architecture and Tailwind CSS for sleek, responsive styling.
-
 <h1>3D Project Overview</h1>
 
 <p>Welcome to our café's 3D web application—a cutting-edge platform with a user-friendly interface featuring a circular menu, stunning gallery, music control, loading animation, and explore overlay. Developed using React for its modular architecture and styled with Tailwind CSS for a modern, responsive design. The application leverages 3D capabilities to enhance user interaction and visual appeal.</p>
@@ -31,23 +27,22 @@ Welcome to our café's web application, a dynamic platform featuring interactive
 <h2>UI Components</h2>
 
 <h3>CircularMenu</h3>
-<p>Located in <code>src/components/navbar/CircularMenu.jsx</code>, this component provides a circular menu with seamless animations for opening and closing, enhancing user engagement.</p>
+<p>Located in <code>src/components/Header/CircularMenu.jsx</code>, this component provides a circular menu with seamless animations for opening and closing, enhancing user engagement.</p>
 
 <h3>Gallery</h3>
-<p>Found in <code>src/components/navbar/Gallery.jsx</code>, this component showcases a visually striking gallery of café images, complete with hover effects to elevate the user experience.</p>
+<p>Found in <code>src/components/Header/Gallery.jsx</code>, this component showcases a visually striking gallery of café images, complete with hover effects to elevate the user experience.</p>
 
 <h3>MusicButton</h3>
-<p>Situated in <code>src/components/Home/MusicButton.jsx</code>, this component offers a button for users to effortlessly play or pause background music.</p>
+<p>Situated in <code>src/components/Header/MusicButton.jsx</code>, this component offers a button for users to effortlessly play or pause background music.</p>
 
 <h3>Loader</h3>
-<p>Available in <code>src/components/Home/Loader.jsx</code>, this component features a loading animation, allowing users to choose to enter the site with or without music.</p>
+<p>Available in <code>src/components/Overlayers/Loader.jsx</code>, this component features a loading animation, allowing users to choose to enter the site with or without music.</p>
 
 <h3>ExploreOverlay</h3>
-<p>Positioned in <code>src/components/Home/ExploreOverlay.jsx</code>, this component displays an overlay inviting users to explore various sections of the café.</p>
+<p>Positioned in <code>src/components/Overlayers/ExploreOverlay.jsx</code>, this component displays an overlay inviting users to explore various sections of the café.</p>
 
 <h3>BookingForm</h3>
-<p>Located in <code>src/components/Home/BookingFrom.jsx</code>, this component provides a simple form for making café reservations.</p>
-
+<p>Located in <code>src/components/Overlayers/BookingFrom.jsx</code>, this component provides a simple form for making café reservations.</p>
 
 <h2>Technologies Used</h2>
 
