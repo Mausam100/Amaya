@@ -6,7 +6,6 @@ import CircularMenu from "./CircularMenu";
 import Gallery from "./Gallery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import MusicButton from "../Home/MusicButton";
 
 const Navbar = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false);

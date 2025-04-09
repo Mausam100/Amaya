@@ -1,36 +1,42 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, ScrollControls } from "@react-three/drei";
-import { Suspense, useState } from "react";
+import { ScrollControls } from "@react-three/drei";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Scene from "./components/Model/Scene";
 import Navbar from "./components/navbar/Navbar";
 import Overlayer from "./components/Home/Overlayer";
 import ExploreOverlay from "./components/Home/ExploreOverlay";
 import Menu from "./components/Home/Menu";
-import { useEffect } from "react";
 import BookingFrom from "./components/Home/BookingFrom";
 import Loader from "./components/Home/Loader";
 import MusicButton from "./components/Home/MusicButton";
 
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
-  const [bookingform, setbookingform] = useState(false)
-  const [isExploreOverlayVisible, setExploreOverlayVisible] = useState(false); // State for ExploreOverlay
+  const [bookingform, setbookingform] = useState(false);
+  const [isExploreOverlayVisible, setExploreOverlayVisible] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const audio = new Audio('/music/chill-vibes-322180.mp3');
+  const audioRef = useRef(new Audio("/music/chill-vibes-322180.mp3"));
+
   const handleEnterWithMusic = () => {
-    audio.volume = 0.4;
-
-    audio.play();
-    console.log("Entering with music...");
+    const audio = audioRef.current;
+    if (audio.paused) {
+      audio.volume = 0.4;
+      audio.play();
+      setIsPlaying(true);
+    }
     setIsLoaded(true);
-    // Add logic to play music here
   };
 
   const handleEnterWithoutMusic = () => {
- 
-    console.log("Entering without music...");
+    const audio = audioRef.current;
+    if (!audio.paused) {
+      audio.pause();
+      audio.currentTime = 0;
+      setIsPlaying(false);
+    }
     setIsLoaded(true);
   };
 
@@ -60,6 +66,7 @@ function App() {
       img: "/images/CappuchinoCoffee.png",
     },
   ];
+
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -71,9 +78,9 @@ function App() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   const handleScrollOffset = (offset) => {
-    // Show ExploreOverlay when offset is between 0.7214516784195425 and 0.8
-    if(isMobile){
+    if (isMobile) {
       if (offset >= 0.7514516784195425 && offset <= 0.8) {
         setExploreOverlayVisible(true);
       } else {
@@ -84,7 +91,7 @@ function App() {
       } else {
         setbookingform(false);
       }
-    }else{
+    } else {
       if (offset >= 0.7214516784195425 && offset <= 0.8) {
         setExploreOverlayVisible(true);
       } else {
@@ -113,7 +120,7 @@ function App() {
               <ScrollControls enabled={true} pages={10}>
                 <Scene
                   setOverlayerVisible={setOverlayerVisible}
-                  onScrollOffsetChange={handleScrollOffset} // Pass the handler to Scene
+                  onScrollOffsetChange={handleScrollOffset}
                 />
                 <Menu
                   setOverlayerVisible={setOverlayerVisible}
@@ -124,15 +131,17 @@ function App() {
             </Suspense>
           </Canvas>
 
-          {/* Navbar Overlay */}
           <div className="flex flex-col w-full h-full p-8 absolute top-0 right-0 pointer-events-none">
             <div className="pointer-events-auto flex items-center justify-end gap-10">
-            <MusicButton audio={audio} onEnterWithMusic={handleEnterWithMusic} onEnterWithoutMusic={handleEnterWithoutMusic} />
+              <MusicButton
+                audio={audioRef.current}
+                isPlaying={isPlaying}
+                setIsPlaying={setIsPlaying}
+              />
               <Navbar menu={menu} />
             </div>
           </div>
 
-          {/* Description Overlay */}
           {isOverlayerVisible && (
             <Overlayer
               setOverlayerVisible={setOverlayerVisible}
@@ -142,10 +151,8 @@ function App() {
             />
           )}
 
-          {/* Booking Form */}
           {bookingform && <BookingFrom />}
 
-          {/* Explore Overlay */}
           {isExploreOverlayVisible && (
             <ExploreOverlay setExploreOverlayVisible={setExploreOverlayVisible} />
           )}

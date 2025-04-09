@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React from "react";
 
-const MusicButton = () => {
-  const [isRotating, setIsRotating] = useState(true); // State to track rotation
-
+const MusicButton = ({ audio, isPlaying, setIsPlaying }) => {
   const handleClick = () => {
-    setIsRotating((prev) => !prev); // Toggle rotation state
+    if (audio.paused) {
+      audio.play();
+      setIsPlaying(true);
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+    }
   };
 
   return (
-    <div className="relative w-16 h-16 flex items-center justify-center bg-[#ABC4AA] rounded-lg shadow-[3px_3px_0_0_#675D50]">
+    <div
+      className="relative w-16 h-16 flex items-center justify-center bg-[#F5D18C] rounded-lg shadow-[3px_3px_0_0_#675D50] cursor-pointer"
+      onClick={handleClick}
+    >
       <div className="flex items-center justify-center w-fit">
         <div
-          className={`w-14 h-14 bg-[#675D50] rounded-full ${isRotating ? 'animate' : ''} flex items-center justify-center`}
+          className={`w-14 h-14 bg-[#675D50] rounded-full ${
+            isPlaying ? "animate-spin" : ""
+          } flex items-center justify-center`}
         >
           <div className="w-8 h-8 bg-[#F3DEBA] rounded-full flex items-center justify-center">
             <div className="w-3 h-3 bg-[#675D50] rounded-full" />
@@ -23,10 +32,6 @@ const MusicButton = () => {
         <div className="w-3 h-3 bg-[#F3DEBA] rounded-full z-10" />
         <div className="w-1 h-6 bg-[#F3DEBA] absolute bottom-0 mb-1" />
       </div>
-      <button
-        onClick={handleClick}
-        className="absolute inset-0 cursor-pointer" // Make the entire button clickable
-      />
     </div>
   );
 };
