@@ -1,58 +1,96 @@
-# Project Overview
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Overview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
 
-This project is a web application for a café that includes various interactive components such as a circular menu, a gallery, a music button, a loader, and an explore overlay. The application is built using React and Tailwind CSS for styling.
+<h1>Project Overview</h1>
 
-## Components
+<p>Welcome to our café's web application—a cutting-edge platform with a user-friendly interface featuring a circular menu, stunning gallery, music control, loading animation, and explore overlay. Developed using React for its modular architecture and styled with Tailwind CSS for a modern, responsive design.</p>
 
-### CircularMenu
-Located in `src/components/navbar/CircularMenu.jsx`, this component displays a circular menu with animation effects for opening and closing the menu items.
+<h2>UI Components</h2>
 
-### Gallery
-Located in `src/components/navbar/Gallery.jsx`, this component showcases a gallery of images related to the café, with hover effects for a better user experience.
+<h3>CircularMenu</h3>
+<p>Located in <code>src/components/navbar/CircularMenu.jsx</code>, this component provides a circular menu with seamless animations for opening and closing, enhancing user engagement.</p>
 
-### MusicButton
-Located in `src/components/Home/MusicButton.jsx`, this component is a button that plays or pauses background music when clicked.
+<h3>Gallery</h3>
+<p>Found in <code>src/components/navbar/Gallery.jsx</code>, this component showcases a visually striking gallery of café images, complete with hover effects to elevate the user experience.</p>
 
-### Loader
-Located in `src/components/Home/Loader.jsx`, this component displays a loading animation with options to enter the site with or without music.
+<h3>MusicButton</h3>
+<p>Situated in <code>src/components/Home/MusicButton.jsx</code>, this component offers a button for users to effortlessly play or pause background music.</p>
 
-### ExploreOverlay
-Located in `src/components/Home/ExploreOverlay.jsx`, this component displays an overlay with options to explore different sections of the café.
+<h3>Loader</h3>
+<p>Available in <code>src/components/Home/Loader.jsx</code>, this component features a loading animation, allowing users to choose to enter the site with or without music.</p>
 
-### BookingForm
-Located in `src/components/Home/BookingFrom.jsx`, this component provides a form for users to make a reservation at the café.
+<h3>ExploreOverlay</h3>
+<p>Positioned in <code>src/components/Home/ExploreOverlay.jsx</code>, this component displays an overlay inviting users to explore various sections of the café.</p>
 
-## Installation
+<h3>BookingForm</h3>
+<p>Located in <code>src/components/Home/BookingFrom.jsx</code>, this component provides a simple form for making café reservations.</p>
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/your-repo.git
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd your-repo
-   ```
-3. Install the dependencies:
-   ```sh
-   npm install
-   ```
+<h2>Installation</h2>
 
-## Usage
+<ol>
+    <li>Clone the repository:
+        <pre><code>git clone https://github.com/Mausam100/Amaya.git</code></pre>
+    </li>
+    <li>Navigate to the project directory:
+        <pre><code>cd Amaya</code></pre>
+    </li>
+    <li>Install the dependencies:
+        <pre><code>npm install</code></pre>
+    </li>
+</ol>
 
-1. Start the development server:
-   ```sh
-   npm start
-   ```
-2. Open your browser and navigate to `http://localhost:3000` to view the application.
+<h2>Usage</h2>
 
-## Technologies Used
+<ol>
+    <li>Start the development server:
+        <pre><code>npm run dev</code></pre>
+    </li>
+    <li>Open your browser and go to <code>http://localhost:3000</code> to explore the application.</li>
+</ol>
 
-- React
-- Tailwind CSS
-- GSAP (GreenSock Animation Platform)
-- @react-three/fiber
-- @react-three/drei
+<h2>Technologies Used</h2>
 
-## License
+<ul>
+    <li>React</li>
+    <li>Tailwind CSS</li>
+    <li>GSAP (GreenSock Animation Platform)</li>
+    <li>@react-three/fiber</li>
+    <li>@react-three/drei</li>
+</ul>
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+<h2>License</h2>
+
+<p>This project is distributed under the MIT License. For more details, refer to the <a href="LICENSE">LICENSE</a> file.</p>
+
+<p>Visit the live application at <a href="https://amaya-sable.vercel.app">amaya-sable.vercel.app</a></p>
+
+</body>
+</html>
