@@ -138,7 +138,7 @@ const Navbar = ({ menu }) => {
                     showCurrentMenu("gallery");
                   }}
                 />
-                <NavComp text={"Contact US"} />
+                <NavComp text={"Reserve"} />
               </div>
             </div>
 

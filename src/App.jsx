@@ -114,7 +114,7 @@ function App() {
         />
       )}
       {isLoaded && (
-        <div className="w-full h-screen bg-black select-none">
+        <div className="w-full h-screen bg-black select-none creamy">
           <Canvas>
             <Suspense fallback={null}>
               <ScrollControls enabled={true} pages={10}>

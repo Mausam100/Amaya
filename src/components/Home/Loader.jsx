@@ -2,17 +2,18 @@ import React from "react";
 
 function Loader({ onEnterWithMusic, onEnterWithoutMusic }) {
   return (
-    <div className="w-full h-screen bg-[#CDCCCE] fixed inset-0 z-9999 flex flex-col items-center justify-center">
+    <div className="w-full font2 h-screen bg-[#c5bebe] fixed inset-0 z-9999 flex flex-col items-center justify-center">
       {/* Loader Animation */}
       <img
+      className="br"
         src="/images/Animation - 1744191874269.gif"
-        alt="Loading Animation"
+        alt="Loading Animation "
       />
 
       {/* Buttons */}
       <div className="flex flex-col gap-4">
         <button
-          className="px-6 py-3 bg-[#d4af7a] text-white font-bold rounded-lg hover:bg-[#b89568] transition-colors"
+          className="px-6 py-3 bg-[#572e10] text-white font-bold rounded-lg hover:bg-[#907552] transition-colors"
           onClick={onEnterWithMusic}
         >
           Enter
