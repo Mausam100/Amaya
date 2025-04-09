@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-</head>
-<body>
+# Project Overview
+
+Welcome to our café's web application, a dynamic platform featuring interactive elements like a circular menu, a captivating gallery, a music button, a loader, and an explore overlay. This application is crafted using React for its robust component architecture and Tailwind CSS for sleek, responsive styling.
 
 <h1>3D Project Overview</h1>
 
