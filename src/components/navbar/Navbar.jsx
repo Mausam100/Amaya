@@ -6,6 +6,7 @@ import CircularMenu from "./CircularMenu";
 import Gallery from "./Gallery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import MusicButton from "../Home/MusicButton";
 
 const Navbar = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -223,6 +224,7 @@ const Navbar = ({ menu }) => {
                   alt="cup"
                   className="w-14 mx-auto h-12 translate-y-0 z-50"
                 />
+               
               </div>
             </div>
           )}

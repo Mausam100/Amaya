@@ -9,6 +9,7 @@ import Menu from "./components/Home/Menu";
 import { useEffect } from "react";
 import BookingFrom from "./components/Home/BookingFrom";
 import Loader from "./components/Home/Loader";
+import MusicButton from "./components/Home/MusicButton";
 
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
@@ -17,9 +18,9 @@ function App() {
   const [selectedMenuItem, setSelectedMenuItem] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const audio = new Audio('/music/chill-vibes-322180.mp3');
   const handleEnterWithMusic = () => {
-    const audio = new Audio('/music/lo-fi-in-coffeshop-SBA-346459437-preview.mp3');
-    audio.volume = 0.5;
+    audio.volume = 0.2;
     audio.play();
     console.log("Entering with music...");
     setIsLoaded(true);
@@ -125,7 +126,8 @@ function App() {
 
           {/* Navbar Overlay */}
           <div className="flex flex-col w-full h-full p-8 absolute top-0 right-0 pointer-events-none">
-            <div className="pointer-events-auto">
+            <div className="pointer-events-auto flex items-center justify-end gap-10">
+            <MusicButton audio={audio} onEnterWithMusic={handleEnterWithMusic} onEnterWithoutMusic={handleEnterWithoutMusic} />
               <Navbar menu={menu} />
             </div>
           </div>
