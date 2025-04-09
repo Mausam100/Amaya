@@ -20,7 +20,8 @@ function App() {
 
   const audio = new Audio('/music/chill-vibes-322180.mp3');
   const handleEnterWithMusic = () => {
-    audio.volume = 0.2;
+    audio.volume = 0.4;
+
     audio.play();
     console.log("Entering with music...");
     setIsLoaded(true);
@@ -31,7 +32,6 @@ function App() {
  
     console.log("Entering without music...");
     setIsLoaded(true);
-    // Add logic to disable music here
   };
 
   const menu = [
