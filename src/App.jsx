@@ -7,6 +7,7 @@ import Overlayer from "./components/Home/Overlayer";
 import ExploreOverlay from "./components/Home/ExploreOverlay";
 import Menu from "./components/Home/Menu";
 import { useEffect } from "react";
+import BookingFrom from "./components/Home/BookingFrom";
 
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
@@ -102,7 +103,7 @@ function App() {
           menu={menu}
         />
       )}
-
+      <BookingFrom/>
       {/* Explore Overlay */}
       {isExploreOverlayVisible && (
         <ExploreOverlay setExploreOverlayVisible={setExploreOverlayVisible} />

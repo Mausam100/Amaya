@@ -17,6 +17,7 @@
     "@tailwindcss/postcss": "^4.0.15",
     "@types/three": "^0.174.0",
     "gsap": "^3.12.7",
+    "lucide-react": "^0.487.0",
     "motion": "^12.6.3",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
