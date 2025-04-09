@@ -122,7 +122,7 @@ const Navbar = ({ menu }) => {
               <div
                 ref={navRef}
                 className={`flex flex-col gap-4 ${
-                  showMenu || showGallery ? "hidden md:flex" : ""
+                  showMenu || showGallery ? "hidden lg:flex" : ""
                 }`}
               >
                 <NavComp
@@ -154,12 +154,12 @@ const Navbar = ({ menu }) => {
             {showGallery && (
               <>
                 <button
-                  className=" md:hidden py-2 px-4 rounded-full bg-blue-400 border-none flex justify-center items-center cursor-pointer shadow-[0_4px_8px_rgba(0,0,0,0.3)] absolute left-10 top-[3%]"
+                  className="z-100 lg:hidden py-2 px-4 rounded-full bg-blue-400 border-none flex justify-center items-center cursor-pointer shadow-[0_4px_8px_rgba(0,0,0,0.3)] absolute left-10 top-[3%]"
                   onClick={() => {
                     showCurrentMenu("gallery");
                   }}
                 >
-                  <span className="text-white text-sm font-bold">Go Back</span>
+                  <span className="text-white text-sm font-bold ">Go Back</span>
                 </button>
                 <Gallery />
               </>
@@ -223,7 +223,6 @@ const Navbar = ({ menu }) => {
                   alt="cup"
                   className="w-14 mx-auto h-12 translate-y-0 z-50"
                 />
-               
               </div>
             </div>
           )}
