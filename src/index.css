@@ -1,48 +1,47 @@
 @import "tailwindcss";
 
-
 @font-face {
-    font-family: Milky;
-    src: url("/fonts/milky-boba/Milky\ Boba.ttf");
-}
-
-@font-face {
-    font-family: bakery;
-    src: url("/public/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf");
+  font-family: Milky;
+  src: url("/fonts/milky-boba/Milky\ Boba.ttf");
 }
 
 @font-face {
-    font-family: creamy;
-    src: url("/public//fonts/creamy-coffee-demo/Creamy\ Coffee\ Demo\ Regular.ttf");
+  font-family: bakery;
+  src: url("/public/fonts/bakery-roast-demo/BakeryRoastDemoRegular.ttf");
 }
 
-.creamy{
-    font-family: Milky;
+@font-face {
+  font-family: creamy;
+  src: url("/public//fonts/creamy-coffee-demo/Creamy\ Coffee\ Demo\ Regular.ttf");
 }
- .milky{
-    font-family: creamy;
- }
-.bakery{
-    font-family: bakery;
+
+.creamy {
+  font-family: Milky;
 }
-.font2{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.milky {
+  font-family: creamy;
+}
+.bakery {
+  font-family: bakery;
+}
+.font2 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .animate {
-    animation: rotation 2s infinite linear;
+  animation: rotation 2s infinite linear;
 }
 
 @keyframes rotation {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.br{
- mix-blend-mode: darken;
- /* filter: contrast(1.);
+.br {
+  mix-blend-mode: darken;
+  /* filter: contrast(1.);
  -webkit-filter: contrast(1.); */
 }

@@ -1,129 +1,110 @@
-import { Canvas } from "@react-three/fiber";
-import { ScrollControls } from "@react-three/drei";
+// Main application component
+import { Canvas } from "@react-three/fiber"; // For rendering 3D scenes
+import { ScrollControls } from "@react-three/drei"; // For scroll-based controls
 import { Suspense, useEffect, useRef, useState } from "react";
-import Scene from "./components/Model/Scene";
-import Navbar from "./components/navbar/Navbar";
-import Overlayer from "./components/Home/Overlayer";
-import ExploreOverlay from "./components/Home/ExploreOverlay";
-import Menu from "./components/Model/Menu";
-import BookingFrom from "./components/Home/BookingFrom";
-import Loader from "./components/Home/Loader";
-import MusicButton from "./components/Home/MusicButton";
+import Scene from "./components/3D/Scene"; // 3D scene component
+import Navbar from "./components/Header/Navbar"; // Navigation bar
+import Overlayer from "./components/Overlayers/Overlayer"; // Overlayer for menu details
+import ExploreOverlay from "./components/Overlayers/ExploreOverlay"; // Explore overlay
+import Menu from "./components/3D/Menu"; // 3D menu
+import BookingFrom from "./components/Overlayers/BookingFrom"; // Booking form
+import Loader from "./components/Overlayers/Loader"; // Loader component
+import MusicButton from "./components/Header/MusicButton"; // Music toggle button
+
+// Import utility functions
+import {
+  handleEnterWithMusic,
+  handleEnterWithoutMusic,
+  handleScrollOffset,
+  handleResize,
+} from "./utils/utils";
 
 function App() {
-  const [isOverlayerVisible, setOverlayerVisible] = useState(false);
-  const [bookingform, setbookingform] = useState(false);
-  const [isExploreOverlayVisible, setExploreOverlayVisible] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState({});
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // State variables
+  const [isOverlayerVisible, setOverlayerVisible] = useState(false); // Overlayer visibility
+  const [bookingform, setbookingform] = useState(false); // Booking form visibility
+  const [isExploreOverlayVisible, setExploreOverlayVisible] = useState(false); // Explore overlay visibility
+  const [selectedMenuItem, setSelectedMenuItem] = useState({}); // Selected menu item
+  const [isLoaded, setIsLoaded] = useState(false); // Loader state
+  const [isPlaying, setIsPlaying] = useState(false); // Music playing state
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Mobile view state
 
+  // Reference to audio element
   const audioRef = useRef(new Audio("/music/chill-vibes-322180.mp3"));
 
-  const handleEnterWithMusic = () => {
-    const audio = audioRef.current;
-    if (audio.paused) {
-      audio.volume = 0.4;
-      audio.play();
-      setIsPlaying(true);
-    }
-    setIsLoaded(true);
-  };
+  // Handle window resize
+  useEffect(() => {
+    const resizeHandler = () => handleResize(setIsMobile);
+    window.addEventListener("resize", resizeHandler);
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  }, []);
 
-  const handleEnterWithoutMusic = () => {
-    const audio = audioRef.current;
-    if (!audio.paused) {
-      audio.pause();
-      audio.currentTime = 0;
-      setIsPlaying(false);
-    }
-    setIsLoaded(true);
-  };
-
+  // Menu items
   const menu = [
     {
       name: "Espresso Macchiato",
       price: "$12",
-      description: "A classic espresso topped with a small amount of steamed milk, offering a perfect balance of rich coffee flavor and creamy texture.",
+      description:
+        "A classic espresso topped with a small amount of steamed milk, offering a perfect balance of rich coffee flavor and creamy texture.",
       img: "/images/Machiaato.png",
     },
     {
       name: "Americano",
       price: "$15",
-      description: "A smooth and robust coffee made by diluting a shot of espresso with hot water, providing a rich and full-bodied taste.",
+      description:
+        "A smooth and robust coffee made by diluting a shot of espresso with hot water, providing a rich and full-bodied taste.",
       img: "/images/AmericanoCoffee.png",
     },
     {
       name: "Espresso con Panna",
       price: "$24",
-      description: "A luxurious espresso topped with a dollop of whipped cream, creating a delightful contrast of strong coffee and creamy sweetness.",
+      description:
+        "A luxurious espresso topped with a dollop of whipped cream, creating a delightful contrast of strong coffee and creamy sweetness.",
       img: "/images/Expresso.png",
     },
     {
       name: "Cappuccino",
       price: "$32",
-      description: "A popular coffee drink featuring equal parts of espresso, steamed milk, and milk foam, delivering a harmonious blend of flavors and textures.",
+      description:
+        "A popular coffee drink featuring equal parts of espresso, steamed milk, and milk foam, delivering a harmonious blend of flavors and textures.",
       img: "/images/CappuchinoCoffee.png",
     },
   ];
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleScrollOffset = (offset) => {
-    if (isMobile) {
-      if (offset >= 0.7514516784195425 && offset <= 0.8) {
-        setExploreOverlayVisible(true);
-      } else {
-        setExploreOverlayVisible(false);
-      }
-      if (offset >= 0.99 && offset <= 1) {
-        setbookingform(true);
-      } else {
-        setbookingform(false);
-      }
-    } else {
-      if (offset >= 0.7214516784195425 && offset <= 0.8) {
-        setExploreOverlayVisible(true);
-      } else {
-        setExploreOverlayVisible(false);
-      }
-      if (offset >= 0.99 && offset <= 1) {
-        setbookingform(true);
-      } else {
-        setbookingform(false);
-      }
-    }
-  };
-
   return (
     <>
+      {/* Show loader until app is loaded */}
       {!isLoaded && (
         <Loader
-          onEnterWithMusic={handleEnterWithMusic}
-          onEnterWithoutMusic={handleEnterWithoutMusic}
+          onEnterWithMusic={() =>
+            handleEnterWithMusic(audioRef, setIsPlaying, setIsLoaded)
+          }
+          onEnterWithoutMusic={() =>
+            handleEnterWithoutMusic(audioRef, setIsPlaying, setIsLoaded)
+          }
         />
       )}
+      {/* Main app content */}
       {isLoaded && (
         <div className="w-full h-screen bg-black select-none creamy">
+          {/* 3D Canvas */}
           <Canvas>
             <Suspense fallback={null}>
               <ScrollControls enabled={true} pages={10}>
                 <Scene
                   setOverlayerVisible={setOverlayerVisible}
-                  onScrollOffsetChange={handleScrollOffset}
+                  onScrollOffsetChange={(offset) =>
+                    handleScrollOffset(
+                      offset,
+                      isMobile,
+                      setExploreOverlayVisible,
+                      setbookingform
+                    )
+                  }
                   setSelectedMenuItem={setSelectedMenuItem}
                   menu={menu}
-
                 />
                 <Menu
                   setOverlayerVisible={setOverlayerVisible}
@@ -134,6 +115,7 @@ function App() {
             </Suspense>
           </Canvas>
 
+          {/* Navbar and Music Button */}
           <div className="flex flex-col w-full h-full p-8 absolute top-0 right-0 pointer-events-none">
             <div className="pointer-events-auto flex items-center justify-end gap-10">
               <MusicButton
@@ -145,6 +127,7 @@ function App() {
             </div>
           </div>
 
+          {/* Overlayer for menu details */}
           {isOverlayerVisible && (
             <Overlayer
               setOverlayerVisible={setOverlayerVisible}
@@ -154,10 +137,14 @@ function App() {
             />
           )}
 
+          {/* Booking form */}
           {bookingform && <BookingFrom />}
 
+          {/* Explore overlay */}
           {isExploreOverlayVisible && (
-            <ExploreOverlay setExploreOverlayVisible={setExploreOverlayVisible} />
+            <ExploreOverlay
+              setExploreOverlayVisible={setExploreOverlayVisible}
+            />
           )}
         </div>
       )}

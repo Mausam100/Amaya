@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+// Import necessary libraries and components
 import { motion, AnimatePresence } from "motion/react";
 import React, { useState, useRef, useEffect } from "react";
 import NavComp from "./NavComp";
@@ -6,20 +6,23 @@ import CircularMenu from "./CircularMenu";
 import Gallery from "./Gallery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import BookingFrom from "../Home/BookingFrom";
+import BookingFrom from "../Overlayers/BookingFrom";
 
 const Navbar = ({ menu }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isHover, setIsHover] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
-  const [showReserve, setShowReserve] = useState(false);
-  const navRef = useRef();
+  // State variables to manage menu visibility and hover effects
+  const [isOpen, setIsOpen] = useState(false); // Tracks if the menu is open
+  const [isHover, setIsHover] = useState(false); // Tracks hover state
+  const [showMenu, setShowMenu] = useState(false); // Tracks if the circular menu is visible
+  const [showGallery, setShowGallery] = useState(false); // Tracks if the gallery is visible
+  const [showReserve, setShowReserve] = useState(false); // Tracks if the reservation form is visible
+  const navRef = useRef(); // Ref for the navigation container
 
+  // Toggle the main menu open/close state
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  // Show the appropriate menu based on the selected type
   const showCurrentMenu = (menuType) => {
     switch (menuType) {
       case "cart":
@@ -54,12 +57,14 @@ const Navbar = ({ menu }) => {
     }
   };
 
+  // Initialize GSAP animations for the navigation menu
   useEffect(() => {
     if (navRef.current) {
       gsap.set(navRef.current.children, { opacity: 0, y: -20 });
     }
   }, []);
 
+  // GSAP animation for showing/hiding the menu
   useGSAP(() => {
     if (!navRef.current) return;
     const targets = navRef.current.children;
@@ -67,6 +72,7 @@ const Navbar = ({ menu }) => {
     const tl = gsap.timeline({ defaults: { transformOrigin: "center top" } });
 
     if (!showMenu) {
+      // Animation for showing the menu
       tl.clear()
         .set(targets, {
           opacity: 0,
@@ -90,6 +96,7 @@ const Navbar = ({ menu }) => {
           ease: "back.out(1.4)",
         });
     } else {
+      // Animation for hiding the menu
       tl.to(targets, {
         opacity: 0,
         y: -20,
@@ -111,6 +118,7 @@ const Navbar = ({ menu }) => {
 
   return (
     <main>
+      {/* AnimatePresence for menu transitions */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -130,6 +138,7 @@ const Navbar = ({ menu }) => {
             className="overflow-hidden flex flex-col gap-4 top-0 right-0 bg-transparent backdrop-blur-md z-50 absolute"
             style={{ pointerEvents: isOpen ? "auto" : "none" }}
           >
+            {/* Navigation container */}
             <div className="flex flex-col h-full justify-center items-center md:justify-center md:items-end mr-0 md:mr-30 pt-4 gap-6">
               <div
                 ref={navRef}
@@ -137,19 +146,21 @@ const Navbar = ({ menu }) => {
                   showMenu || showGallery ? "hidden lg:flex" : ""
                 }`}
               >
+                {/* Cart menu button */}
                 <NavComp
                   img={"/cart.svg"}
                   onClick={() => {
                     showCurrentMenu("cart");
                   }}
                 />
-               
+                {/* Gallery menu button */}
                 <NavComp
                   text={"Gallery"}
                   onClick={() => {
                     showCurrentMenu("gallery");
                   }}
                 />
+                {/* Reserve menu button */}
                 <NavComp
                   text={"Reserve"}
                   onClick={() => {
@@ -159,6 +170,7 @@ const Navbar = ({ menu }) => {
               </div>
             </div>
 
+            {/* Circular menu */}
             {showMenu && (
               <CircularMenu
                 menu={menu}
@@ -168,6 +180,7 @@ const Navbar = ({ menu }) => {
               />
             )}
 
+            {/* Gallery view */}
             {showGallery && (
               <>
                 <button
@@ -181,11 +194,14 @@ const Navbar = ({ menu }) => {
                 <Gallery />
               </>
             )}
+
+            {/* Reservation form */}
             {showReserve && <BookingFrom />}
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Navbar */}
       <nav className="z-50 flex items-center justify-end">
         <div
           onMouseEnter={() => setIsHover(true)}
@@ -196,6 +212,7 @@ const Navbar = ({ menu }) => {
           }`}
           style={{ pointerEvents: "auto" }}
         >
+          {/* Hamburger menu icon */}
           <div className="flex z-50 w-10 items-center justify-end cursor-pointer">
             <div className="flex flex-col w-6 gap-[6px]">
               <div
@@ -211,6 +228,7 @@ const Navbar = ({ menu }) => {
             </div>
           </div>
 
+          {/* Menu label and logo */}
           {!isOpen && (
             <div className="flex z-50 items-center justify-between gap-2 transition-all duration-500 ease-in-out">
               <div

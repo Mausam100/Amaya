@@ -5,6 +5,7 @@ const Gallery = () => {
     <div className="z-90 max-lg:w-[100%] max-w-7xl mx-auto p-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       {/* Desktop Grid */}
       <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-4 h-[600px]">
+        {/* Large image for modern ambiance */}
         <div className="col-span-2 row-span-2 relative group overflow-hidden rounded-xl">
           <img
             src="/images/gallery-4.png"
@@ -17,6 +18,8 @@ const Gallery = () => {
             <p className="text-sm opacity-90">Our welcoming space</p>
           </div>
         </div>
+
+        {/* Smaller image for coffee preparation */}
         <div className="relative group overflow-hidden rounded-xl">
           <img
             src="/images/gallery-3.png"
@@ -31,6 +34,7 @@ const Gallery = () => {
           </div>
         </div>
 
+        {/* Smaller image for coffee and pastries */}
         <div className="relative group overflow-hidden rounded-xl">
           <img
             src="/images/gallery-2.png"
@@ -43,6 +47,7 @@ const Gallery = () => {
           </div>
         </div>
 
+        {/* Smaller image for indoor seating */}
         <div className="relative group overflow-hidden rounded-xl">
           <img
             src="/images/gallery-1.png"
@@ -55,6 +60,7 @@ const Gallery = () => {
           </div>
         </div>
 
+        {/* Smaller image for barista art */}
         <div className="relative group overflow-hidden rounded-xl">
           <img
             src="/images/gallery-5.png"
@@ -70,6 +76,7 @@ const Gallery = () => {
 
       {/* Mobile Grid */}
       <div className="grid md:hidden grid-cols-1 gap-4">
+        {/* Large image for modern ambiance */}
         <div className="relative group overflow-hidden rounded-xl h-[300px]">
           <img
             src="/images/gallery-4.png"
@@ -83,6 +90,7 @@ const Gallery = () => {
           </div>
         </div>
 
+        {/* Two smaller images for coffee preparation and pastries */}
         <div className="grid grid-cols-2 gap-4">
           <div className="relative group overflow-hidden rounded-xl h-[200px]">
             <img
@@ -109,6 +117,7 @@ const Gallery = () => {
           </div>
         </div>
 
+        {/* Two smaller images for indoor seating and barista art */}
         <div className="grid grid-cols-2 gap-4">
           <div className="relative group overflow-hidden rounded-xl h-[200px]">
             <img

@@ -3,8 +3,9 @@ import { Environment, useScroll, Text } from "@react-three/drei";
 import * as THREE from "three";
 import Model from "./Model";
 import { useFrame, useThree } from "@react-three/fiber";
-import About from "../Home/About";
+import About from "./About";
 
+// Define curve points for the camera path
 const curvePoints = [
   [-4, 1.8, -1],
   [2.5, 1.8, -1],
@@ -26,6 +27,7 @@ const curvePoints = [
   [-0.8, 1.1, -1.6],
 ];
 
+// Define zones for camera look-at behavior
 const lookAtZones = [
   { start: 0, end: 0.514, target: new THREE.Vector3(5.902, 1.722, -0.71) },
   { start: 0.514, end: 0.72145, target: new THREE.Vector3(-1.377, 0, -1.82) },
@@ -34,26 +36,28 @@ const lookAtZones = [
   { start: 0.9, end: 1, target: new THREE.Vector3(-0.8, 1.1, -1.8) },
 ];
 
-const maxMove = 0.1; // world-space parallax magnitude
+// Maximum parallax movement for camera
+const maxMove = 0.1;
 
 export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange, setSelectedMenuItem }) {
   const { camera, mouse } = useThree();
   const scroll = useScroll();
 
+  // State and refs for managing offsets and device type
   const [offset, setOffset] = useState(0);
   const [mouseOffset, setMouseOffset] = useState(new THREE.Vector2(0, 0));
   const mobileOffset = useRef(new THREE.Vector2(0, 0));
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const permissionAsked = useRef(false);
 
-  // Resize → mobile flag
+  // Handle window resize to update mobile flag
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Desktop mouse tracking
+  // Track mouse movement for desktop parallax effect
   useEffect(() => {
     const onMouseMove = (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -64,18 +68,19 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
     return () => window.removeEventListener("mousemove", onMouseMove);
   }, []);
 
-  // Mobile: deviceorientation + touch fallback
+  // Handle mobile device orientation and touch fallback
   useEffect(() => {
     let touchStart = null;
 
+    // Handle device orientation changes
     const handleOrientation = (e) => {
-      // gamma: LR tilt, beta: FB tilt
       mobileOffset.current.set(
         THREE.MathUtils.clamp(e.gamma / 45, -1, 1),
         THREE.MathUtils.clamp(e.beta / 45, -1, 1)
       );
     };
 
+    // Handle touch start event
     const onTouchStart = (e) => {
       e.preventDefault(); // Prevent default touch behavior
       if (
@@ -87,20 +92,16 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
         DeviceOrientationEvent.requestPermission()
           .then((resp) => {
             if (resp === "granted") {
-              window.addEventListener(
-                "deviceorientation",
-                handleOrientation,
-                true
-              );
+              window.addEventListener("deviceorientation", handleOrientation, true);
             }
           })
           .catch(console.error);
       }
-      // also begin our touch‑drag fallback
       const t = e.touches[0];
       touchStart = { x: t.clientX, y: t.clientY };
     };
 
+    // Handle touch move event
     const onTouchMove = (e) => {
       if (!touchStart) return;
       const t = e.touches[0];
@@ -108,16 +109,17 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
       const dy = ((t.clientY - touchStart.y) / window.innerHeight) * 2;
 
       // Smoothly interpolate the mobile offset
-      mobileOffset.current.x += (THREE.MathUtils.clamp(dx, -1, 1) - mobileOffset.current.x) * 0.1; // Smoothing factor
-      mobileOffset.current.y += (THREE.MathUtils.clamp(dy, -1, 1) - mobileOffset.current.y) * 0.1; // Smoothing factor
+      mobileOffset.current.x += (THREE.MathUtils.clamp(dx, -1, 1) - mobileOffset.current.x) * 0.1;
+      mobileOffset.current.y += (THREE.MathUtils.clamp(dy, -1, 1) - mobileOffset.current.y) * 0.1;
     };
 
+    // Handle touch end event
     const onTouchEnd = () => {
       touchStart = null;
       mobileOffset.current.set(0, 0);
     };
 
-    // If permission API not needed (Android/desktop), register immediately
+    // Register device orientation and touch events
     if (
       !(
         typeof DeviceOrientationEvent !== "undefined" &&
@@ -131,6 +133,7 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
     window.addEventListener("touchmove", onTouchMove, { passive: true });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
 
+    // Cleanup event listeners on unmount
     return () => {
       window.removeEventListener("deviceorientation", handleOrientation);
       window.removeEventListener("touchstart", onTouchStart);
@@ -139,22 +142,22 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
     };
   }, []);
 
+  // Create a Catmull-Rom curve for the camera path
   const curve = useMemo(
-    () =>
-      new THREE.CatmullRomCurve3(
-        curvePoints.map((p) => new THREE.Vector3(...p))
-      ),
+    () => new THREE.CatmullRomCurve3(curvePoints.map((p) => new THREE.Vector3(...p))),
     []
   );
+
+  // Target vector for camera look-at behavior
   const targetLookAt = useMemo(() => new THREE.Vector3(), []);
 
+  // Update camera position and look-at behavior on each frame
   useFrame(() => {
-    // 1) Scroll offset
     const so = THREE.MathUtils.clamp(scroll.offset, 0, 1);
     setOffset(so);
     onScrollOffsetChange?.(so);
 
-    // 2) LookAt zones
+    // Determine the current look-at target based on scroll offset
     let curT = lookAtZones[0].target;
     for (let z of lookAtZones) {
       if (so >= z.start && so <= z.end) {
@@ -165,26 +168,24 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
     targetLookAt.lerp(curT, 0.05);
     camera.lookAt(targetLookAt);
 
-    // 3) Base position on curve
+    // Get the base position on the curve
     const basePos = curve.getPointAt(so);
     if (!basePos) return;
 
-    // 4) Parallax: choose source by device
+    // Apply parallax effect based on device type
     const src = isMobile ? mobileOffset.current : mouseOffset;
-    const parallax = new THREE.Vector3(
-      src.x * maxMove,
-      src.y * maxMove,
-      0
-    );
+    const parallax = new THREE.Vector3(src.x * maxMove, src.y * maxMove, 0);
 
-    // 5) Final camera position
+    // Calculate the final camera position
     const finalPos = basePos.clone().add(parallax);
     camera.position.lerp(finalPos, 0.1);
   });
 
   return (
     <>
+      {/* Group containing text and interactive elements */}
       <group position={[-1.3, 0.72, -2.5]} rotation={[0, -Math.PI / 2, 0]}>
+        {/* Welcome text */}
         <Text
           onClick={() => setOverlayerVisible((v) => !v)}
           onPointerOver={() => (document.body.style.cursor = "pointer")}
@@ -203,6 +204,7 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
         >
           Welcome to Amaya Café – A digital café experience like never before!
         </Text>
+        {/* Amaya title text */}
         <Text
           fillOpacity={
             offset > 0 && offset < 0.3
@@ -218,8 +220,11 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
         >
           Amaya
         </Text>
+        {/* About section */}
         <About offset={offset} />
       </group>
+
+      {/* Environment setup */}
       <Environment
         files="/resturant.hdr"
         background
@@ -228,7 +233,11 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
         environmentIntensity={0.8}
         backgroundRotation={[0, Math.PI / 2, 0]}
       />
+
+      {/* 3D model */}
       <Model menu={menu} setOverlayerVisible={setOverlayerVisible} setSelectedMenuItem={setSelectedMenuItem} />
+
+      {/* Ambient light */}
       <ambientLight intensity={1} />
     </>
   );

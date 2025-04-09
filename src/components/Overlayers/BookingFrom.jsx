@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 
 function BookingFrom() {
   return (
     <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-sm:w-full flex items-center justify-center z-40">
+      {/* Booking form container */}
       <div className="w-full bg-[#1d1d1da6] backdrop-blur-xs rounded-lg p-8 shadow-lg">
+        {/* Logo */}
         <img src="/images/logo.svg" alt="logo" className="w-30 mx-auto mb-6" />
+        {/* Form title */}
         <h2 className="text-center text-2xl font-bold text-[#d4af7a] mb-6">
           Make a Reserve
         </h2>
-        <form  className="grid grid-cols-2 gap-6">
+        {/* Reservation form */}
+        <form className="grid grid-cols-2 gap-6">
           {/* Name Input */}
           <div className="col-span-2 md:col-span-1">
             <label className="block text-sm text-white mb-2">Your Name *</label>
@@ -23,7 +27,9 @@ function BookingFrom() {
 
           {/* Phone Input */}
           <div className="col-span-2 md:col-span-1">
-            <label className="block text-sm text-white mb-2">Your Phone *</label>
+            <label className="block text-sm text-white mb-2">
+              Your Phone *
+            </label>
             <input
               type="tel"
               name="phone"
@@ -35,7 +41,9 @@ function BookingFrom() {
 
           {/* Persons Dropdown */}
           <div className="col-span-2 md:col-span-1">
-            <label className="block text-sm text-white mb-2">Number of Persons</label>
+            <label className="block text-sm text-white mb-2">
+              Number of Persons
+            </label>
             <select
               name="persons"
               className="w-full p-3 rounded-lg bg-[#2a2a2a] text-white focus:outline-none focus:ring-2 focus:ring-[#d4af7a]"
