@@ -8,6 +8,7 @@ import ExploreOverlay from "./components/Home/ExploreOverlay";
 import Menu from "./components/Home/Menu";
 import { useEffect } from "react";
 import BookingFrom from "./components/Home/BookingFrom";
+import Loader from "./components/Home/Loader";
 
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
@@ -104,7 +105,7 @@ function App() {
           <Navbar menu={menu} />
         </div>
       </div>
-
+      <Loader/>
       {/* Description Overlay */}
       {isOverlayerVisible && (
         <Overlayer
