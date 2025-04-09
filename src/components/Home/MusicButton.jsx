@@ -1,24 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react';
 
-const MusicButton = ({ audio, onEnterWithMusic, onEnterWithoutMusic }) => {
-  const [isRotating, setIsRotating] = useState(true);
- // Load audio
-
-  useEffect(() => {
-    
-  }, [audio]);
+const MusicButton = () => {
+  const [isRotating, setIsRotating] = useState(true); // State to track rotation
 
   const handleClick = () => {
-    setIsRotating((prev) => {
-     
-    });
+    setIsRotating((prev) => !prev); // Toggle rotation state
   };
 
   return (
     <div className="relative w-16 h-16 flex items-center justify-center bg-[#ABC4AA] rounded-lg shadow-[3px_3px_0_0_#675D50]">
       <div className="flex items-center justify-center w-fit">
         <div
-          className={`w-14 h-14 bg-[#675D50] rounded-full ${isRotating ? 'animate-[rotation_2s_infinite_linear]' : ''} flex items-center justify-center`}
+          className={`w-14 h-14 bg-[#675D50] rounded-full ${isRotating ? 'animate' : ''} flex items-center justify-center`}
         >
           <div className="w-8 h-8 bg-[#F3DEBA] rounded-full flex items-center justify-center">
             <div className="w-3 h-3 bg-[#675D50] rounded-full" />
@@ -32,10 +25,10 @@ const MusicButton = ({ audio, onEnterWithMusic, onEnterWithoutMusic }) => {
       </div>
       <button
         onClick={handleClick}
-        className="absolute inset-0 cursor-pointer"
+        className="absolute inset-0 cursor-pointer" // Make the entire button clickable
       />
     </div>
   );
 };
 
-export default MusicButton
+export default MusicButton;
