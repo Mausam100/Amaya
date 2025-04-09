@@ -39,7 +39,12 @@ const lookAtZones = [
 // Maximum parallax movement for camera
 const maxMove = 0.1;
 
-export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange, setSelectedMenuItem }) {
+export default function Scene({
+  menu,
+  setOverlayerVisible,
+  onScrollOffsetChange,
+  setSelectedMenuItem,
+}) {
   const { camera, mouse } = useThree();
   const scroll = useScroll();
 
@@ -82,7 +87,6 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
 
     // Handle touch start event
     const onTouchStart = (e) => {
-      e.preventDefault(); // Prevent default touch behavior
       if (
         typeof DeviceOrientationEvent !== "undefined" &&
         DeviceOrientationEvent.requestPermission &&
@@ -92,7 +96,11 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
         DeviceOrientationEvent.requestPermission()
           .then((resp) => {
             if (resp === "granted") {
-              window.addEventListener("deviceorientation", handleOrientation, true);
+              window.addEventListener(
+                "deviceorientation",
+                handleOrientation,
+                true
+              );
             }
           })
           .catch(console.error);
@@ -109,8 +117,10 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
       const dy = ((t.clientY - touchStart.y) / window.innerHeight) * 2;
 
       // Smoothly interpolate the mobile offset
-      mobileOffset.current.x += (THREE.MathUtils.clamp(dx, -1, 1) - mobileOffset.current.x) * 0.1;
-      mobileOffset.current.y += (THREE.MathUtils.clamp(dy, -1, 1) - mobileOffset.current.y) * 0.1;
+      mobileOffset.current.x +=
+        (THREE.MathUtils.clamp(dx, -1, 1) - mobileOffset.current.x) * 0.1;
+      mobileOffset.current.y +=
+        (THREE.MathUtils.clamp(dy, -1, 1) - mobileOffset.current.y) * 0.1;
     };
 
     // Handle touch end event
@@ -144,7 +154,10 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
 
   // Create a Catmull-Rom curve for the camera path
   const curve = useMemo(
-    () => new THREE.CatmullRomCurve3(curvePoints.map((p) => new THREE.Vector3(...p))),
+    () =>
+      new THREE.CatmullRomCurve3(
+        curvePoints.map((p) => new THREE.Vector3(...p))
+      ),
     []
   );
 
@@ -235,7 +248,11 @@ export default function Scene({ menu, setOverlayerVisible, onScrollOffsetChange,
       />
 
       {/* 3D model */}
-      <Model menu={menu} setOverlayerVisible={setOverlayerVisible} setSelectedMenuItem={setSelectedMenuItem} />
+      <Model
+        menu={menu}
+        setOverlayerVisible={setOverlayerVisible}
+        setSelectedMenuItem={setSelectedMenuItem}
+      />
 
       {/* Ambient light */}
       <ambientLight intensity={1} />

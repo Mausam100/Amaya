@@ -8,7 +8,7 @@ const Gallery = () => {
         {/* Large image for modern ambiance */}
         <div className="col-span-2 row-span-2 relative group overflow-hidden rounded-xl">
           <img
-            src="/images/gallery-4.png"
+            src="/images/gallery-4.jpg"
             alt="Café interior"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
@@ -22,7 +22,7 @@ const Gallery = () => {
         {/* Smaller image for coffee preparation */}
         <div className="relative group overflow-hidden rounded-xl">
           <img
-            src="/images/gallery-3.png"
+            src="/images/gallery-3.jpg"
             alt="Coffee preparation"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
@@ -37,7 +37,7 @@ const Gallery = () => {
         {/* Smaller image for coffee and pastries */}
         <div className="relative group overflow-hidden rounded-xl">
           <img
-            src="/images/gallery-2.png"
+            src="/images/gallery-2.jpg"
             alt="Coffee and pastries"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
@@ -50,7 +50,7 @@ const Gallery = () => {
         {/* Smaller image for indoor seating */}
         <div className="relative group overflow-hidden rounded-xl">
           <img
-            src="/images/gallery-1.png"
+            src="/images/gallery-1.jpg"
             alt="Outdoor seating"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
@@ -79,7 +79,7 @@ const Gallery = () => {
         {/* Large image for modern ambiance */}
         <div className="relative group overflow-hidden rounded-xl h-[300px]">
           <img
-            src="/images/gallery-4.png"
+            src="/images/gallery-4.jpg"
             alt="Café interior"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
@@ -94,7 +94,7 @@ const Gallery = () => {
         <div className="grid grid-cols-2 gap-4">
           <div className="relative group overflow-hidden rounded-xl h-[200px]">
             <img
-              src="/images/gallery-3.png"
+              src="/images/gallery-3.jpg"
               alt="Coffee preparation"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
@@ -106,7 +106,7 @@ const Gallery = () => {
 
           <div className="relative group overflow-hidden rounded-xl h-[200px]">
             <img
-              src="/images/gallery-2.png"
+              src="/images/gallery-2.jpg"
               alt="Coffee and pastries"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
@@ -121,7 +121,7 @@ const Gallery = () => {
         <div className="grid grid-cols-2 gap-4">
           <div className="relative group overflow-hidden rounded-xl h-[200px]">
             <img
-              src="/images/gallery-1.png"
+              src="/images/gallery-1.jpg"
               alt="Indoor seating"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />

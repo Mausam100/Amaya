@@ -2,7 +2,12 @@
 import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations, Text } from "@react-three/drei";
 
-export default function Model({ setSelectedMenuItem, menu, setOverlayerVisible, ...props }) {
+export default function Model({
+  setSelectedMenuItem,
+  menu,
+  setOverlayerVisible,
+  ...props
+}) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("/Amaya1.glb");
   const { actions } = useAnimations(animations, group);
@@ -12,18 +17,6 @@ export default function Model({ setSelectedMenuItem, menu, setOverlayerVisible, 
       Object.values(actions).forEach((action) => action.play());
     }
   }, [actions]);
-
-  useEffect(() => {
-    const handleTouchStart = (event) => {
-      event.preventDefault();
-    };
-
-    window.addEventListener('touchstart', handleTouchStart, { passive: false });
-
-    return () => {
-      window.removeEventListener('touchstart', handleTouchStart);
-    };
-  }, []);
 
   return (
     <group
@@ -107,7 +100,7 @@ export default function Model({ setSelectedMenuItem, menu, setOverlayerVisible, 
                         />
                       </group>
                     </group>
-                   
+
                     <group
                       name="Cup001_5_13"
                       position={[0.945, 0.735, -0.969]}
@@ -195,7 +188,7 @@ export default function Model({ setSelectedMenuItem, menu, setOverlayerVisible, 
                       onPointerOut={() => {
                         document.body.style.cursor = "default";
                       }}
-                      position={[-1.740, 0.735, 0.040]}
+                      position={[-1.74, 0.735, 0.04]}
                       rotation={[0, 1.128, 0]}
                     >
                       <group name="Object_24_24">

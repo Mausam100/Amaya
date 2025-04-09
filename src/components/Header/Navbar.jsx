@@ -7,6 +7,7 @@ import Gallery from "./Gallery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import BookingFrom from "../Overlayers/BookingFrom";
+import { FaChevronLeft } from "react-icons/fa";
 
 const Navbar = ({ menu }) => {
   // State variables to manage menu visibility and hover effects
@@ -184,12 +185,14 @@ const Navbar = ({ menu }) => {
             {showGallery && (
               <>
                 <button
-                  className="z-100 lg:hidden py-2 px-4 rounded-full bg-blue-400 border-none flex justify-center items-center cursor-pointer shadow-[0_4px_8px_rgba(0,0,0,0.3)] absolute left-10 top-[3%]"
+                  className="z-100 lg:hidden py-2 px-4 rounded-full bg-[#562E11] border-none flex justify-center items-center cursor-pointer shadow-[0_4px_8px_rgba(0,0,0,0.3)] absolute left-10 top-[3%]"
                   onClick={() => {
                     showCurrentMenu("gallery");
                   }}
                 >
-                  <span className="text-white text-sm font-bold ">Go Back</span>
+                  <span className="text-white text-sm font-bold ">
+                    <FaChevronLeft size={25} />
+                  </span>
                 </button>
                 <Gallery />
               </>
