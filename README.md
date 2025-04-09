@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Overview</title>
+    <title>3D Project Overview</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,9 +29,9 @@
 </head>
 <body>
 
-<h1>Project Overview</h1>
+<h1>3D Project Overview</h1>
 
-<p>Welcome to our café's web application—a cutting-edge platform with a user-friendly interface featuring a circular menu, stunning gallery, music control, loading animation, and explore overlay. Developed using React for its modular architecture and styled with Tailwind CSS for a modern, responsive design.</p>
+<p>Welcome to our café's 3D web application—a cutting-edge platform with a user-friendly interface featuring a circular menu, stunning gallery, music control, loading animation, and explore overlay. Developed using React for its modular architecture and styled with Tailwind CSS for a modern, responsive design. The application leverages 3D capabilities to enhance user interaction and visual appeal.</p>
 
 <h2>UI Components</h2>
 
