@@ -11,6 +11,7 @@ import BookingFrom from "./components/Home/BookingFrom";
 
 function App() {
   const [isOverlayerVisible, setOverlayerVisible] = useState(false);
+  const [bookingform, setbookingform] = useState(false)
   const [isExploreOverlayVisible, setExploreOverlayVisible] = useState(false); // State for ExploreOverlay
   const [selectedMenuItem, setSelectedMenuItem] = useState({});
 
@@ -59,11 +60,21 @@ function App() {
       } else {
         setExploreOverlayVisible(false);
       }
+      if (offset >= 0.99 && offset <= 1) {
+        setbookingform(true);
+      } else {
+        setbookingform(false);
+      }
     }else{
       if (offset >= 0.7214516784195425 && offset <= 0.8) {
         setExploreOverlayVisible(true);
       } else {
         setExploreOverlayVisible(false);
+      }
+      if (offset >= 0.99 && offset <= 1) {
+        setbookingform(true);
+      } else {
+        setbookingform(false);
       }
     }
   };
@@ -103,7 +114,11 @@ function App() {
           menu={menu}
         />
       )}
-      <BookingFrom/>
+     {
+      bookingform && (
+        <BookingFrom/>
+      )
+     }
       {/* Explore Overlay */}
       {isExploreOverlayVisible && (
         <ExploreOverlay setExploreOverlayVisible={setExploreOverlayVisible} />
