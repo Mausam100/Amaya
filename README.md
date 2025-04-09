@@ -51,7 +51,7 @@
     <li>Start the development server:
         <pre><code>npm run dev</code></pre>
     </li>
-    <li>Open your browser and go to <code>http://localhost:3000</code> to explore the application.</li>
+    <li>Open your browser and go to <code>http://localhost:5173</code> to explore the application.</li>
 </ol>
 
 <h2>Technologies Used</h2>
