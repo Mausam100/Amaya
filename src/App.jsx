@@ -116,6 +116,11 @@ function App() {
           </Canvas>
 
           {/* Navbar and Music Button */}
+          <img
+            src="/images/logo.svg"
+            alt="logo"
+            className="w-16 md:w-20 fixed top-8 left-5 z-50"
+          />
           <div className="flex flex-col w-full h-full p-8 absolute top-0 right-0 pointer-events-none">
             <div className="pointer-events-auto flex items-center justify-end gap-10">
               <MusicButton
