@@ -111,7 +111,7 @@ function BookingFrom() {
       {/* Booking form container */}
       <div className="w-full bg-[#1d1d1da6] backdrop-blur-xs rounded-lg py-4 px-5 shadow-lg">
         {/* Logo */}
-        <img src="/images/logo.svg" alt="logo" className="w-30 mx-auto mb-2" />
+        <img src="/images/logo.svg" alt="logo" className="w-20 mx-auto mb-2" />
         {/* Form title */}
         <h2 className="text-center text-2xl font-bold text-[#d4af7a] mb-3">
           Make a Reserve
@@ -132,7 +132,7 @@ function BookingFrom() {
 
           {/* Phone Input */}
           <div className="col-span-2 md:col-span-1">
-            <label className="block text-sm text-white mb-2">
+            <label className="block text-sm text-white">
               Your Phone *
             </label>
             <input
@@ -146,7 +146,7 @@ function BookingFrom() {
 
           {/* Persons Dropdown */}
           <div className="col-span-2 md:col-span-1">
-            <label className="block text-sm text-white mb-2">
+            <label className="block text-sm text-white">
               Number of Persons
             </label>
             <select
@@ -163,7 +163,7 @@ function BookingFrom() {
 
           {/* Date Input */}
           <div className="col-span-2 md:col-span-1">
-            <label className="block text-sm text-white mb-2">Date</label>
+            <label className="block text-sm text-white ">Date</label>
             <input
               type="date"
               name="date"
@@ -174,7 +174,7 @@ function BookingFrom() {
 
           {/* Time Dropdown */}
           <div className="col-span-2 md:col-span-1">
-            <label className="block text-sm text-white mb-2">Time</label>
+            <label className="block text-sm text-white">Time</label>
             <select
               name="time"
               className="w-full p-3 rounded-lg bg-[#2a2a2a] text-white focus:outline-none focus:ring-2 focus:ring-[#d4af7a]"
