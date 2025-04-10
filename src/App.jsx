@@ -116,14 +116,17 @@ function App() {
           </Canvas>
 
           {/* Navbar and Music Button */}
-          <div className="flex flex-col w-full h-full p-8 absolute top-0 right-0 pointer-events-none">
-            <div className="pointer-events-auto flex items-center justify-end gap-10">
-              <MusicButton
-                audio={audioRef.current}
-                isPlaying={isPlaying}
-                setIsPlaying={setIsPlaying}
-              />
-              <Navbar menu={menu} />
+          <div className="flex flex-col w-full h-full p-3 absolute top-0 right-0 pointer-events-none">
+            <div className="pointer-events-auto flex items-center md:justify-end justify-between  z-50">
+            <img src="/images/logo.svg" alt="" className="w-20 mx-auto mb-2" />
+              <div className="flex items-center gap-2">
+                <MusicButton
+                  audio={audioRef.current}
+                  isPlaying={isPlaying}
+                  setIsPlaying={setIsPlaying}
+                />
+                <Navbar menu={menu} />
+              </div>
             </div>
           </div>
 
